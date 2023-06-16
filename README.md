@@ -5,8 +5,9 @@ Sistema de Control de Procesos para Torogoz
 Instalar node.js y composer
 - [Node.js](https://nodejs.org/en)
 - [Composer](https://getcomposer.org/download/)
+- [XAMPP](https://www.apachefriends.org/es/index.html)
 
-instalar laravel con composer
+Instalar laravel con composer
 ``composer global require laravel/installer``
 
 ## Overview
