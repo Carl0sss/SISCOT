@@ -8,9 +8,12 @@ Instalar node.js y composer
 - [XAMPP](https://www.apachefriends.org/es/index.html)
 
 Instalar laravel con composer
-```composer global require laravel/installer```
+```
+composer global require laravel/installer
+```
 
-## Configuración de la conexion de la db
+## Configuración general
+Configuración de la conexiones en .env
 ```php
 DB_CONNECTION=mysql
 DB_HOST=127.0.0.1
@@ -20,5 +23,9 @@ DB_USERNAME=root
 DB_PASSWORD=
 ```
 
+Confirguración de reactfront
+```php
+npm install axios bootstrap react-router-dom localforage match-sorter sort-by
+```
 ## Overview
 ...
