@@ -21,7 +21,6 @@ html {
 }
 .sidebar h3 {
   margin-top: 0;
-
 }
 
 .sidebar-buttons button {
@@ -83,6 +82,5 @@ html {
   top: 10; /* Agrega esta propiedad */
   left: 10; /* Agrega esta propiedad */
   border-radius: 20px;
-  position:fixed;
 }
 /* Resto de estilos... */

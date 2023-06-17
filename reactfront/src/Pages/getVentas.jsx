@@ -1,11 +1,7 @@
 import React from 'react';
-import './App.css';
+import './getVentas.css';
 import CustomNavbar from './Components/CustomNavbar';
 import Sidebar from './Components/Sidebar';
-import ShowVentas from './Components/ShowVentas';
-import { BrowserRouter,Routes,Route } from 'react-router-dom';
-
-{/*Para modal */}
 
 
 const App = () => {
@@ -43,12 +39,9 @@ const App = () => {
                     <Route path='/' element={<ShowVentas/>}/>
                   </Routes>
                   </BrowserRouter>
-                </div>
+                  </div>
               </section>
             </div>
-            <div>{/* div para el modal*/ }
-            
-          </div>{/*div para el modal */ }
           </div>
         </div>
         </body>
