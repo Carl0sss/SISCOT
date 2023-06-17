@@ -5,6 +5,12 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+}
+
+/* Recordar arreglar esto */
+span{
+  color: white;
 }
 
 code {
@@ -15,4 +21,8 @@ code {
 .logo-image {
   max-height: 45px;
   padding-left: 100px;
+}
+
+.sidebar{
+  background-color: #23C4A7;
 }
