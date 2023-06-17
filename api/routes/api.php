@@ -22,6 +22,6 @@ Route::controller(VentasController::class)->group(function(){
     Route::get('/ventas','index');
     Route::post('/venta','store');
     Route::get('/venta/{id}','show');
-    Route::put('/venta','update');
+    Route::put('/venta/{id}','update');
     Route::delete('/venta/{id}','destroy');
 });

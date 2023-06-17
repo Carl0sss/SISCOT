@@ -37,7 +37,7 @@ class VentasController extends Controller
      */
     public function show($id)
     {
-        $venta = Venta::find(ID_VENTA);
+        $venta = Venta::find($id);
         return $venta;
     }
 
@@ -56,7 +56,8 @@ class VentasController extends Controller
         $venta1->DIRECCION_PERSONA = $request->DIRECCION_PERSONA;
         $venta1->FECHA_VENTA = $request->FECHA_VENTA;
         
-        $venta->save();
+        $venta1->save();
+        return $venta1;
     }
 
     /**
