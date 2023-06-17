@@ -1,6 +1,11 @@
 import React from 'react'
+import VentasMenu from './VentasMenu'
+import {Link} from 'react-router-dom'
 
 const SideBar = () => {
+    
+
+
     return (
         <div className='container-fluid'>
             <div className='row'>
@@ -10,15 +15,15 @@ const SideBar = () => {
                         <span className='ms-1 fs-4'>Gestión</span>
                     </a>
                     <hr/>
-                    <ul class="nav nav-pills flex-column">
-                        <li class="nav-item text-white fs-4">
-                            <a href="#" class="nav-link" aria-current="page">
+                    <ul className="nav nav-pills flex-column">
+                        <li className="nav-item text-white fs-4">
+                            <a href='#' className="nav-link" aria-current="page">
                                 <i className=''></i>
                                 <span className='ms-2'>Ventas</span>
                             </a>
                         </li>
-                        <li class="nav-item text-white fs-4">
-                            <a href="#" class="nav-link" aria-current="page">
+                        <li className="nav-item text-white fs-4">
+                            <a href="#" className="nav-link" aria-current="page">
                                 <i className=''></i>
                                 <span className='ms-2'>Inventario</span>
                             </a>

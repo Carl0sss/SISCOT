@@ -38,8 +38,8 @@ class Cotizacione extends Model
 		'TOTAL_COTIZACION' => 'float',
 		'SUBTOTAL_COTIZACION' => 'float',
 		'IVA_COTIZACION' => 'float',
-		'FECHA_INGRESOS_COTIZACION' => 'datetime',
-		'FECHA_ENTREGA_EST_COTIZACION' => 'datetime'
+		'FECHA_INGRESOS_COTIZACION' => 'date',
+		'FECHA_ENTREGA_EST_COTIZACION' => 'date'
 	];
 
 	protected $fillable = [
