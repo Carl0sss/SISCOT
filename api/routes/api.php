@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\CotizacionController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\PedidoController;
@@ -15,9 +16,11 @@ use App\Http\Controllers\Api\PedidoController;
 |
 */
 
+
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
 
 Route::controller(PedidoController::class)->group(function(){
     Route::get('/pedidos','index');
@@ -25,4 +28,13 @@ Route::controller(PedidoController::class)->group(function(){
     Route::get('/pedido/{id}','show');
     Route::put('/pedido/{id}','update');
     Route::delete('/pedido/{id}','destroy');
+});
+
+Route::controller(CotizacionController::class)->group(function(){
+    Route::get('/cotizaciones','index');
+    Route::post('/cotizacion','store');
+    Route::get('/cotizacion/{id}','show');
+    Route::put('/cotizacion','update');
+    Route::delete('/cotizacion/{id}','destroy');
+
 });
