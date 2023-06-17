@@ -22,6 +22,17 @@ class CotizacionController extends Controller
      */
     public function store(Request $request)
     {
+        $cotizacion = new Cotizacione();
+        $cotizacion->ID_COTIZACION = $request->ID_COTIZACION;
+        $cotizacion->ID_CLIENTE = $request->ID_CLIENTE;
+        $cotizacion->DESCRIPCION_COTIZACIOIN = $request->DESCRIPCION_COTIZACIOIN;
+        $cotizacion->TOTAL_COTIZACION = $request->TOTAL_COTIZACION;
+        $cotizacion->SUBTOTAL_COTIZACION = $request->SUBTOTAL_COTIZACION;
+        $cotizacion->IVA_COTIZACION = $request->IVA_COTIZACION;
+        $cotizacion->FECHA_INGRESOS_COTIZACION = $request->FECHA_INGRESOS_COTIZACION;
+        $cotizacion->FECHA_ENTREGA_EST_COTIZACION = $request->FECHA_ENTREGA_EST_COTIZACION;
+        $cotizacion->save();
+
     }
 
     /**
@@ -38,7 +49,15 @@ class CotizacionController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $cotizacion = Cotizacione::find($id);
+        $cotizacion->ID_CLIENTE = $request->ID_CLIENTE;
+        $cotizacion->DESCRIPCION_COTIZACIOIN = $request->DESCRIPCION_COTIZACIOIN;
+        $cotizacion->TOTAL_COTIZACION = $request->TOTAL_COTIZACION;
+        $cotizacion->SUBTOTAL_COTIZACION = $request->SUBTOTAL_COTIZACION;
+        $cotizacion->IVA_COTIZACION = $request->IVA_COTIZACION;
+        $cotizacion->FECHA_INGRESOS_COTIZACION = $request->FECHA_INGRESOS_COTIZACION;
+        $cotizacion->FECHA_ENTREGA_EST_COTIZACION = $request->FECHA_ENTREGA_EST_COTIZACION;
+        $cotizacion->save();
     }
 
     /**
