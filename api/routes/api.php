@@ -2,7 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\Api\VentasController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -16,4 +16,12 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
+});
+
+Route::controller(VentasController::class)->group(function(){
+    Route::get('/ventas','index');
+    Route::post('/venta','store');
+    Route::get('/venta/{id}','show');
+    Route::put('/venta','update');
+    Route::delete('/venta/{id}','destroy');
 });
