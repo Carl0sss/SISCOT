@@ -1,14 +1,17 @@
 import logo from './logo.svg';
 import './App.css';
+import NavBar from './components/NavBar';
+import SideBar from './components/SideBar';
 
 function App() {
   return (
-    
+
     <div className="App">
+      <NavBar />
+      <SideBar />
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
         <h1>SISCOT</h1>
-      </header> 
+      </header>
     </div>
   );
 }
