@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\CotizacionController;
+use App\Http\Controllers\Api\InvProductoController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -27,4 +28,12 @@ Route::controller(CotizacionController::class)->group(function(){
     Route::get('/cotizacion/{id}','show');
     Route::put('/cotizacion','update');
     Route::delete('/cotizacion/{id}','destroy');
+});
+
+Route::controller(InvProductoController::class)->group(function(){
+    Route::get('/inventarios','index');
+    Route::post('/inventario','store');
+    Route::get('/inventario/{id}','show');
+    Route::put('/inventario/{id}','update');
+    Route::delete('/inventario/{id}','destroy');
 });

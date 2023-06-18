@@ -1,0 +1,139 @@
+
+body,
+html {
+  background-color: rgba(236, 236, 236, 1);
+  height: 100%;
+  margin: 0;
+}
+  h2 {
+    padding: 35px;
+    margin-left: 240px; /* Ajusta el valor según el ancho de la barra lateral */
+  }
+.container {
+  display: flex;
+  height: 100%;
+}
+
+.content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+}
+.sidebar h3 {
+  margin-top: 0;
+}
+
+.sidebar-buttons button {
+  display: block;
+  width: 100%;
+  margin-bottom: 10px;
+}
+.menu-center {
+  background-color: rgba(255, 255, 255, 0.8);
+  padding: 45px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-left: 240px; /* Ajusta el valor según el ancho de la barra lateral */
+}
+.menu-center {
+  background-color: rgba(239, 235, 235, 0.8);
+  padding: 40px;
+  margin-right: 10 40px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.menu-center h3 {
+  color: rgba(157, 149, 149, 0.7);
+  padding-bottom:35px;
+}
+
+.menu-center button {
+  padding: 15px;
+  background-color: rgba(236, 236, 236, 1);
+  border: none;
+  margin: 8px;
+  border-radius: 20px;
+}
+
+#contenedor {
+  display: table;
+}
+
+#contenidos {
+  display: table-row;
+}
+
+#columna1, #columna2{
+  display: table-cell;
+  margin-right: 100px;
+  align-content: space-between;
+}
+.sidebar {
+  width: 200px;
+  background-color: #23c4a7;
+  color: white;
+  padding: 20px;
+  height: 100%; /* Agrega esta propiedad */
+  position: fixed; /* Agrega esta propiedad */
+  top: 10; /* Agrega esta propiedad */
+  left: 10; /* Agrega esta propiedad */
+  border-radius: 20px;
+}
+
+label{
+  padding:25px;
+}
+/* Resto de estilos... */
+
+.back-button{
+  margin-left: 800px;
+  padding: 10px;
+  align-content: center;
+}
+.back-button {
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: #23c4a7;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.back-button:hover {
+  background-color: #1d9d87;
+}
+.card-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.card {
+  width: 200px;
+  padding: 20px;
+  margin: 10px;
+  text-align: center;
+  background-color: white;
+  padding: 20px;
+  text-align: center;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  align-items: center;
+}
+
+.card button{
+  margin-top: 20px;
+  background-color: #23c4a7;
+}
