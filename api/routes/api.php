@@ -1,10 +1,12 @@
 <?php
 
+use App\Http\Controllers\Api\ClienteController;
 use App\Http\Controllers\Api\CotizacionController;
 use App\Http\Controllers\Api\DetalleCotizacionController;
 use App\Http\Controllers\Api\ProductoController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -52,4 +54,15 @@ Route::controller(ProductoController::class)->group(function(){
     Route::get('/producto/{id}','show');
     Route::put('/producto/{id}','update');
     Route::delete('/producto/{id}','destroy');
+});
+
+/* 
+Routes for clientes
+*/
+Route::controller(ClienteController::class)->group(function(){
+    Route::get('/clientes','index');
+    Route::post('/cliente','store');
+    Route::get('/cliente/{id}','show');
+    Route::put('/cliente/{id}','update');
+    Route::delete('/cliente/{id}','destroy');
 });

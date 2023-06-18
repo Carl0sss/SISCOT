@@ -16,7 +16,7 @@ function App() {
         <NavBar />
         {/* <SideBar /> */}
 
-        <div>
+        <div className='d-flex mt-5 justify-content-center'>
           <Routes>
             <Route path='/' element={<VentasMenu />} />
             <Route path='/show' element={<ShowCotizaciones />} />
