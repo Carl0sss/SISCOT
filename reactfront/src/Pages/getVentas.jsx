@@ -2,6 +2,12 @@ import React from 'react';
 import './getVentas.css';
 import CustomNavbar from './Components/CustomNavbar';
 import Sidebar from './Components/Sidebar';
+import ShowVentas from './Components/ShowVentas';
+import CreateVentas from './Components/CreateVentas';
+import EditVentas from './Components/EditVentas';
+import { BrowserRouter,Routes,Route } from 'react-router-dom';
+
+{/*Para modal */}
 
 
 const App = () => {
@@ -37,11 +43,16 @@ const App = () => {
                   <BrowserRouter>
                   <Routes>
                     <Route path='/' element={<ShowVentas/>}/>
+                    <Route path='/create' element={<CreateVentas/>}/>
+                    <Route path='/edit/:id' element={<EditVentas/>}/>
                   </Routes>
                   </BrowserRouter>
-                  </div>
+                </div>
               </section>
             </div>
+            <div>{/* div para el modal*/ }
+            
+          </div>{/*div para el modal */ }
           </div>
         </div>
         </body>

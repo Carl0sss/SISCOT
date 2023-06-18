@@ -3,6 +3,8 @@ import './App.css';
 import CustomNavbar from './Components/CustomNavbar';
 import Sidebar from './Components/Sidebar';
 import ShowVentas from './Components/ShowVentas';
+import CreateVentas from './Components/CreateVentas';
+import EditVentas from './Components/EditVentas';
 import { BrowserRouter,Routes,Route } from 'react-router-dom';
 
 {/*Para modal */}
@@ -41,6 +43,8 @@ const App = () => {
                   <BrowserRouter>
                   <Routes>
                     <Route path='/' element={<ShowVentas/>}/>
+                    <Route path='/create' element={<CreateVentas/>}/>
+                    <Route path='/edit/:id' element={<EditVentas/>}/>
                   </Routes>
                   </BrowserRouter>
                 </div>

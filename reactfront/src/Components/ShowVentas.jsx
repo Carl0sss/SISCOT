@@ -19,6 +19,7 @@ const ShowVentas = () => {
 
     const deleteVenta = async (id)=>{
     await axios.delete(`${endpoint}/venta/${id}`)
+    window.location.reload();
   };
   
   return (
@@ -51,7 +52,7 @@ const ShowVentas = () => {
                     <td>{venta.DIRECCION_PERSONA}</td>
                     <td>{venta.FECHA_VENTA}</td>
                     <td>
-                        <Link to={'/venta/{id}'} className='btn btn-warning'>Edit</Link>
+                        <Link to={`/edit/${venta.ID_VENTA}`} className='btn btn-warning'>Editar</Link>
                         <button onClick={ ()=>deleteVenta(venta.ID_VENTA)}>Delete</button>
                     </td>
                 </tr>
