@@ -6,6 +6,7 @@ import ShowVentas from './Components/ShowVentas';
 import CreateVentas from './Components/CreateVentas';
 import EditVentas from './Components/EditVentas';
 import { BrowserRouter,Routes,Route } from 'react-router-dom';
+import AgregarModal from './Components/AgregarModal';
 
 {/*Para modal */}
 

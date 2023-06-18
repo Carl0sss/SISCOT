@@ -4,6 +4,7 @@ use App\Http\Controllers\Api\CotizacionController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\VentasController;
+use App\Http\Controllers\Api\DetallesVentaController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -37,4 +38,11 @@ Route::controller(CotizacionController::class)->group(function(){
     Route::put('/cotizacion','update');
     Route::delete('/cotizacion/{id}','destroy');
 
+});
+Route::controller(DetallesVentaController::class)->group(function(){
+    Route::get('/detalleventa','index');
+    Route::post('/detalleventa','store');
+    Route::get('/detalleventa/{id}','show');
+    Route::put('/detalleventa/{id}','update');
+    Route::delete('/detalleventa/{id}','destroy');
 });
