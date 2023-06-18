@@ -37,4 +37,4 @@ Route::controller(CotizacionController::class)->group(function(){
     Route::put('/cotizacion','update');
     Route::delete('/cotizacion/{id}','destroy');
 
-});
+}); 
