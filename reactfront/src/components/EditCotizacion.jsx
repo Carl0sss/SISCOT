@@ -26,7 +26,7 @@ const EditCotizacion = () => {
       IVA_COTIZACION:IVA_COTIZACION, 
       FECHA_INGRESOS_COTIZACION:FECHA_INGRESOS_COTIZACION, 
       FECHA_ENTREGA_EST_COTIZACION:FECHA_ENTREGA_EST_COTIZACION });
-    navigate('/');
+    navigate('/show');
   }
 
   useEffect(() => {
@@ -137,7 +137,7 @@ const EditCotizacion = () => {
                 <div className="mb-3 row">
                     <div className="col-8">
                         <button type="submit" className="btn btn-primary btn-lg">Guardar</button>
-                        <a className='btn btn-outline-secundary btn-lg' href='/'> Canselar</a>
+                        <a className='btn btn-outline-secundary btn-lg' href='/show'>Cancelar</a>
                     </div>
                 </div>
             </div>

@@ -17,7 +17,7 @@ const CreateCotizacion = () => {
     const store = async (event) => {
         event.preventDefault();
         await axios.post(endpoint, { ID_CLIENTE, DESCRIPCION_COTIZACIOIN, TOTAL_COTIZACION, SUBTOTAL_COTIZACION, IVA_COTIZACION, FECHA_INGRESOS_COTIZACION, FECHA_ENTREGA_EST_COTIZACION });
-        navigate('/');
+        navigate('/show');
     };
 
     return (
@@ -113,7 +113,7 @@ const CreateCotizacion = () => {
                         <div className="mb-3 row">
                             <div className="col-8">
                                 <button type="submit" className="btn btn-primary btn-lg">Guardar</button>
-                                <a className='btn btn-outline-secundary btn-lg' href='/'> Canselar</a>
+                                <a className='btn btn-outline-secundary btn-lg' href='/show'>Cancelar</a>
                             </div>
                         </div>
                     </div>
