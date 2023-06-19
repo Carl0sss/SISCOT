@@ -1,7 +1,5 @@
 import React from 'react';
 import './Sidebar.css';
-import { VscOutput } from "react-icons/vsc";
-import { VscRepo } from "react-icons/vsc"
 
 const Sidebar = () => {
   return (
@@ -10,12 +8,6 @@ const Sidebar = () => {
       <div className="sidebar-buttons">
         <button>Ventas</button>
         <button>Inventario</button>
-        <div className="button-container">         
-          <button><VscOutput /> Ventas</button>
-        </div>
-        <div className="button-container">
-          <button><VscRepo /> Inventario</button>
-        </div>
       </div>
     </div>
   );

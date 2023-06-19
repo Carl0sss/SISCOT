@@ -6,15 +6,10 @@
     padding: 20px;
     height: 100%; /* Agrega esta propiedad */
     position: fixed; /* Agrega esta propiedad */
-    top: 0; /* Agrega esta propiedad */
-    left: 0; /* Agrega esta propiedad */
+    top: 10; /* Agrega esta propiedad */
+    left: 10; /* Agrega esta propiedad */
     border-radius: 20px;
-    position: fixed;
-    bottom: 20; 
-    z-index: 999;
-    margin-top: 90px;
   }
-
   .sidebar h4 {
     margin-top: 0;
     text-align: center;
@@ -36,36 +31,4 @@
   .sidebar-buttons button:hover {
     background-color: #197a64;
   }
-  .sidebar {
-    /* Estilos para el contenedor principal del sidebar */
-  }
-  
-  .sidebar h4 {
-    /* Estilos para el título "Menu" */
-  }
-  
-  .sidebar-buttons {
-    /* Estilos para el contenedor de los botones */
-  }
-  
-  .button-container {
-    /* Estilos para cada contenedor de botón e imagen */
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding:10px;
-    margin-bottom: 10px; /* Espacio entre cada botón */
-  }
-  
-  .button-container img {
-    /* Estilos para la imagen */
-    width: 50px; /* Ajusta el ancho según tus necesidades */
-    height: 50px; /* Ajusta la altura según tus necesidades */
-  }
-  
-  .button-container button {
-    /* Estilos para el botón */
-    /* Agrega estilos adicionales según tus necesidades */
-  }
-  
   /* Resto de estilos... */
