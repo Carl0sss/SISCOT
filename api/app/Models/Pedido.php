@@ -62,3 +62,4 @@ class Pedido extends Model
 		return $this->hasMany(DetallePedido::class, 'ID_PEDIDO');
 	}
 }
+

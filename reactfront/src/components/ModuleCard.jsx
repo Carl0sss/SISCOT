@@ -1,6 +1,12 @@
 import React from 'react'
+<<<<<<< HEAD
 import ventas from '../images/ventas.jpg'
 import { Link } from 'react-router-dom';
+=======
+import { Link } from 'react-router-dom';
+import ventas from '../images/pedidos.jpg'
+
+>>>>>>> 96ad4d2307dcbc336711fe35845974062e7df82a
 
 const ModuleCard = (props) => {
 

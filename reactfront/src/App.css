@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 body,
 html {
   background-color: rgba(236, 236, 236, 1);
@@ -106,3 +107,96 @@ h2 {
     position: fixed;
   }
 }
+=======
+/* styles.css */
+
+/* Estilos generales */
+html {
+  background-color: rgba(236, 236, 236, 1);
+}
+
+h2 {
+  margin-bottom: 20px;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-label {
+  font-weight: bold;
+}
+
+.form-control {
+  width: 300px;
+  margin-bottom: 10px;
+}
+
+button[type="submit"] {
+  margin-top: 20px;
+  width: 300px;
+}
+
+/* Estilos del componente "Login" */
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+#columna2 {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 50px;
+}
+
+.menu-center {
+  background-color: rgba(255, 255, 255, 0.8);
+  padding: 40px;
+  margin-right: 100px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.back-button{
+  margin-left: 800px;
+  padding: 10px;
+  align-content: center;
+}
+.back-button {
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: #23c4a7;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.back-button:hover {
+  background-color: #1d9d87;
+}
+
+.menu-center button {
+  padding: 15px;
+  background-color: #23c4a7;
+  border: none;
+  margin: 8px;
+  border-radius: 20px;
+}
+
+.menu-center button:hover{
+  background-color: #1d9d87;
+  color:#fff;
+}
+>>>>>>> 96ad4d2307dcbc336711fe35845974062e7df82a

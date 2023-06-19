@@ -36,6 +36,14 @@ Route::controller(VentasController::class)->group(function(){
 
 });
 
+Route::controller(PedidoController::class)->group(function(){
+    Route::get('/pedidos','index');
+    Route::post('/pedido','store');
+    Route::get('/pedido/{id}','show');
+    Route::put('/pedido/{id}','update');
+    Route::delete('/pedido/{id}','destroy');
+});
+
 Route::controller(CotizacionController::class)->group(function(){
     Route::get('/cotizaciones','index'); 
     Route::post('/cotizacion','store');
