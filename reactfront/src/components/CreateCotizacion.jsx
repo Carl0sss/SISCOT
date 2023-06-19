@@ -24,7 +24,7 @@ const CreateCotizacion = () => {
         SUBTOTAL_COTIZACION: 0,
         IVA_COTIZACION: 0,
         TOTAL_COTIZACION: 0,
-        FECHA_INGRESOS_COTIZACION: '',
+        FECHA_INGRESOS_COTIZACION: new Date(),
         FECHA_ENTREGA_EST_COTIZACION: ''
     });
 
@@ -139,19 +139,6 @@ const CreateCotizacion = () => {
                                     className='form-control'
                                 />
                                 <small className="text-muted">Ingrese la descripcion</small>
-                            </div>
-                        </div>
-                        <div className="mb-3 row">
-                            <label className="col-4 col-form-label">Fecha cotización</label>
-                            <div className="col-8">
-                                <input
-                                    name='FECHA_INGRESOS_COTIZACION'
-                                    value={cotizacionData.FECHA_INGRESOS_COTIZACION}
-                                    onChange={handleCotizacionInputChange}
-                                    type='date'
-                                    className='form-control'
-                                />
-                                <small className="text-muted">Fecha cotización</small>
                             </div>
                         </div>
                         <div className="mb-3 row">

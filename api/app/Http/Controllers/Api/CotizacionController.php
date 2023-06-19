@@ -5,7 +5,9 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Models\Cotizacione;
 use App\Models\DetalleCotizacion;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class CotizacionController extends Controller {
     /**
@@ -23,25 +25,28 @@ class CotizacionController extends Controller {
 
     public function store( Request $request ) {
         // Create Cotizacione instance
+        $fechaIngreso = Carbon::now();
+        // Obtiene la fecha y hora actual
         $cotizacion = new Cotizacione();
-        $cotizacion->ID_COTIZACION = $request->ID_COTIZACION;
         $cotizacion->ID_CLIENTE = $request->ID_CLIENTE;
         $cotizacion->DESCRIPCION_COTIZACIOIN = $request->DESCRIPCION_COTIZACIOIN;
         $cotizacion->TOTAL_COTIZACION = $request->TOTAL_COTIZACION;
         $cotizacion->SUBTOTAL_COTIZACION = $request->SUBTOTAL_COTIZACION;
         $cotizacion->IVA_COTIZACION = $request->IVA_COTIZACION;
-        $cotizacion->FECHA_INGRESOS_COTIZACION = $request->FECHA_INGRESOS_COTIZACION;
+        $cotizacion->FECHA_INGRESOS_COTIZACION = $fechaIngreso;
         $cotizacion->FECHA_ENTREGA_EST_COTIZACION = $request->FECHA_ENTREGA_EST_COTIZACION;
         $cotizacion->save();
-        //saving the request
-        // Obtener el ID de la cotización recién guardada
-        $clave = $cotizacion->ID_COTIZACION;
+
+        // Getting the last modified id by date
+        $lastId = DB::table( 'cotizaciones' )->orderBy( 'FECHA_INGRESOS_COTIZACION', 'desc' )->value( 'ID_COTIZACION' );
+
+
         // Create detalles cotizaion
         $detalles = $request->input( 'detalles' );
         if ( $detalles ) {
             foreach ( $detalles as $detalle ) {
                 $detalleCotizacion = new DetalleCotizacion();
-                $detalleCotizacion->ID_COTIZACION = $clave;
+                $detalleCotizacion->ID_COTIZACION = $lastId;
                 $detalleCotizacion->ID_PRODUCTO = $detalle[ 'ID_PRODUCTO' ];
                 $detalleCotizacion->ESPECIFICACIONES_COTIZACION = $detalle[ 'ESPECIFICACIONES_COTIZACION' ];
                 $detalleCotizacion->PRESIO_UNITARIO_COTIZACION = $detalle[ 'PRECIO_UNITARIO' ];
@@ -53,7 +58,9 @@ class CotizacionController extends Controller {
             }
         }
 
-        return response()->json( [ 'message' => 'Cotización creada exitosamente' ] );
+        /* return response()->json( [ 'message' => 'Cotización creada exitosamente' ] );
+        */
+        return response()->json( [ 'message' => 'Cotización creada exitosamente', 'id' => $lastId ] );
     }
 
     /**
