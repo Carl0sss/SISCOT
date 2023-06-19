@@ -2,12 +2,12 @@ import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import { useNavigate, useParams } from 'react-router-dom'
 
-const endpoint = 'http://127.0.0.1:8000/api/productosT/'
+const endpoint = 'http://127.0.0.1:8000/api/inventario/'
 
-const EditProductosT = () => {
+const EditProduct = () => {
 
     const [ID_INVENTARIO_PRODUCTOS, setProductosT] = useState('');
-    const [ID_PRODUCTOS, setProducto] = useState('');
+    const [ID_PRODUCTO, setProducto] = useState('');
     const [CANTIDAD_INVENTARIO_PRODUCTOS, setCantidadProductosT] = useState(0);
     const navigate = useNavigate();
     const {id} = useParams()
@@ -16,7 +16,7 @@ const EditProductosT = () => {
     event.preventDefault();
     await axios.put(`${endpoint}${id}`, { 
         ID_INVENTARIO_PRODUCTOS:ID_INVENTARIO_PRODUCTOS,
-        ID_PRODUCTOS:ID_PRODUCTOS, 
+        ID_PRODUCTO:ID_PRODUCTO, 
         CANTIDAD_INVENTARIO_PRODUCTOS:CANTIDAD_INVENTARIO_PRODUCTOS})
     navigate('/')
   }
@@ -25,7 +25,7 @@ const EditProductosT = () => {
     const getProductById = async () =>{
       const response = await axios.get(`${endpoint}${id}`)
             setProductosT(response.data.ID_INVENTARIO_PRODUCTOS)
-            setProducto(response.data.ID_PRODUCTOS)
+            setProducto(response.data.ID_PRODUCTO)
             setCantidadProductosT(response.data.CANTIDAD_INVENTARIO_PRODUCTOS)
     }
     getProductById();
@@ -33,7 +33,7 @@ const EditProductosT = () => {
 
   return (
     <div>
-    <h3>Editar Productos Terminados</h3>
+    <h2>Editar Productos Terminados</h2>
     <div className="container">
         <form onSubmit={update} className='d-flex'>
             <div className='col'>
@@ -53,7 +53,7 @@ const EditProductosT = () => {
                     <label className="col-4 col-form-label">Productos</label>
                     <div className="col-8">
                         <input
-                            value={ID_PRODUCTOS}
+                            value={ID_PRODUCTO}
                             onChange={(e) => setProducto(e.target.value)}
                             type='text'
                             className='form-control'/>
@@ -85,4 +85,4 @@ const EditProductosT = () => {
 </div>
   )
 }
-export default EditProductosT;
+export default EditProduct;
