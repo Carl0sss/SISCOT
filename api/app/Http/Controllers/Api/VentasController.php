@@ -39,7 +39,6 @@ class VentasController extends Controller
         $venta1->IVA_VENTA = $request->input('IVA_VENTA');
         $venta1->NOMBRE_PERSONA = $request->input('NOMBRE_PERSONA');
         $venta1->DIRECCION_PERSONA = $request->input('DIRECCION_PERSONA');
-        $venta1->FECHA_VENTA = $request->input('FECHA_VENTA');
 
         $venta1->save();
         

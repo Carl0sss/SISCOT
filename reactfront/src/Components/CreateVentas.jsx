@@ -1,8 +1,6 @@
-import React,{useState} from 'react'
+import React, { useState, useEffect } from 'react';
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
-import { useEffect } from 'react';
-import { Button, Modal, ModalHeader, ModalBody, ModalFooter, FormGroup, Label, Input } from 'reactstrap';
 
 const endpoint = 'http://127.0.0.1:8000/api/venta';
 const endpoint2 = 'http://127.0.0.1:8000/api';
@@ -38,7 +36,8 @@ const [ventaData, setVentaData] = useState({
 const [detalleData, setDetalleData] = useState({
   ID_PRODUCTO: '',
   CANTIDAD_PRODUCTO: 0,
-  SUBTOTAL_PRODUCTO: 0
+  SUBTOTAL_PRODUCTO: 0,
+  PRECIO_UNITARIO: 0,
 });
 
   const handleVentaInputChange = (e)=>{
@@ -47,7 +46,7 @@ const [detalleData, setDetalleData] = useState({
       [e.target.name]: e.target.value,
     });
   }
-  const handleDetalleInputChange = (index, e) => {
+  const handleDetalleInputChange = (e) => {
     const {name, value }= e.target;
     setDetalleData({
       ...detalleData,
@@ -57,7 +56,7 @@ const [detalleData, setDetalleData] = useState({
 
   const handleAgregarDetalle = (event) => {
    event.preventDefault();
-    const subtotal = parseInt(detalleData.CANTIDAD_COTIZACION);
+    const subtotal = parseFloat(detalleData.PRECIO_UNITARIO) * parseInt(detalleData.CANTIDAD_PRODUCTO);
 
           setVentaData({
               ...ventaData,
@@ -71,6 +70,7 @@ const [detalleData, setDetalleData] = useState({
             ID_PRODUCTO: '',
             CANTIDAD_PRODUCTO: 0,
             SUBTOTAL_PRODUCTO: 0,
+            PRECIO_UNITARIO: 0,
           });
       };
 
@@ -189,7 +189,7 @@ const [detalleData, setDetalleData] = useState({
                                     name='NOMBRE_PERSONA'
                                     value={ventaData.NOMBRE_PERSONA}
                                     onChange={handleVentaInputChange}
-                                    type='number'
+                                    type='text'
                                     className='form-control'
                                 />
                                 <small className="text-muted">Nombre cliente</small>
@@ -202,7 +202,7 @@ const [detalleData, setDetalleData] = useState({
                                     name='DIRECCION_PERSONA'
                                     value={ventaData.DIRECCION_PERSONA}
                                     onChange={handleVentaInputChange}
-                                    type='number'
+                                    type='text'
                                     className='form-control'
                                 />
                                 <small className="text-muted">Total</small>
@@ -218,6 +218,87 @@ const [detalleData, setDetalleData] = useState({
             </div>
       </form>
       </div>
+      <hr />
+            <h6>Detalles Venta</h6>
+            <div className="container">
+                <form onSubmit={handleAgregarDetalle} className='d-flex'>
+                    <div className='col'>
+                        <div className="mb-3 row">
+                            <div className="mb-3 row">
+                                <label className="col-4 col-form-label">Producto</label>
+                                <div className="col-8">
+                                    <select
+                                        name='ID_PRODUCTO'
+                                        onChange={handleDetalleInputChange}
+                                        className='form-select'>
+                                        <option selected>-- Seleccione un Producto --</option>
+                                        {productos.map((producto) => (
+                                            <option value={producto.ID_PRODUCTO}>{producto.NOMBRE_PRODUCTO}</option>
+                                        ))}
+                                    </select>
+                                    <small className="text-muted">Seleccióne un producto</small>
+                                </div>
+                            </div>
+                            
+                        </div>
+                        <div className="mb-3 row">
+                            <div className="col-8">
+                                <button type="submit" className="btn btn-primary">Agregar producto</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div className='col'>
+                        <div className="mb-3 row">
+                            <label className="col-4 col-form-label">Cantidad</label>
+                            <div className="col-8">
+                                <input
+                                    name='CANTIDAD_COTIZACION'
+                                    value={detalleData.CANTIDAD_PRODUCTO}
+                                    onChange={handleDetalleInputChange}
+                                    type='number'
+                                    className='form-control'
+                                />
+                                <small className="text-muted">Cantidad</small>
+                            </div>
+                        </div>
+                        <div className="mb-3 row">
+                            <label className="col-4 col-form-label">Precio unitario</label>
+                            <div className="col-8">
+                                <input
+                                    name='PRECIO_UNITARIO'
+                                    value={detalleData.PRECIO_UNITARIO}
+                                    onChange={handleDetalleInputChange}
+                                    type='number'
+                                    className='form-control'
+                                />
+                                <small className="text-muted">Precio unitario</small>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <hr />
+            <h6>Resumen detalles Ventas</h6>
+            <div className="container">
+                <table className="table mt-3">
+                    <thead>
+                        <th>Codigo</th>
+                        <th>Cantidad</th>
+                        <th>Precio</th>
+                        <th>Sub total</th>
+                    </thead>
+                    <tbody>
+                        {ventaData.detalles.map((detalle, index) => (
+                            <tr key={index}>
+                                <td>{detalle.ID_PRODUCTO}</td>
+                                <td>{detalle.CANTIDAD_PRODUCTO}</td>
+                                <td>{detalle.PRECIO_UNITARIO}</td>
+                                <td>{detalle.SUBTOTAL_PRODUCTO}</td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+            </div>
     </div>
   )
 }
