@@ -5,24 +5,9 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-
-}
-
-/* Recordar arreglar esto */
-span{
-  color: white;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
-}
-
-.logo-image {
-  max-height: 45px;
-  padding-left: 100px;
-}
-
-.sidebar{
-  background-color: #23C4A7;
 }
