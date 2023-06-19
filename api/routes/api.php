@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\CotizacionController;
+use App\Http\Controllers\Api\MateriasPrimasController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -27,4 +28,11 @@ Route::controller(CotizacionController::class)->group(function(){
     Route::get('/cotizacion/{id}','show');
     Route::put('/cotizacion','update');
     Route::delete('/cotizacion/{id}','destroy');
+});
+Route::controller(MateriasPrimasController::class)->group(function(){
+    Route::get('/materiasprimas','index');
+    Route::post('/materiasprima','store');
+    Route::get('/materiasprima/{id}','show');
+    Route::put('/materiasprima/{id}','update');
+    Route::delete('/materiasprima/{id}','destroy');
 });

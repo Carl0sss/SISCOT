@@ -1,40 +1,95 @@
-.App {
-  text-align: center;
-  background-color: #ECECEC;
-  min-height: 100vh;
-  width: 100%;
+/* styles.css */
+
+/* Estilos generales */
+html {
+  background-color: rgba(236, 236, 236, 1);
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+h1 {
+  margin-top: 20%;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+h2 {
+  margin-bottom: 20px;
 }
 
-.App-header {
-  min-height: 100vh;
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-label {
+  font-weight: bold;
+}
+
+.form-control {
+  width: 300px;
+  margin-bottom: 10px;
+}
+
+button[type="submit"] {
+  margin-top: 20px;
+  width: 300px;
+}
+
+/* Estilos del componente "Login" */
+.container {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  height: 100vh;
+}
+
+#columna2 {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 50px;
+}
+
+.menu-center {
+  background-color: rgba(255, 255, 255, 0.8);
+  padding: 40px;
+  margin-right: 100px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.back-button{
+  margin-left: 800px;
+  padding: 10px;
+  align-content: center;
+}
+.back-button {
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: #23c4a7;
   color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
-.App-link {
-  color: #61dafb;
+.back-button:hover {
+  background-color: #1d9d87;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.menu-center button {
+  padding: 15px;
+  background-color: #23c4a7;
+  border: none;
+  margin: 8px;
+  border-radius: 20px;
+}
+
+.menu-center button:hover{
+  background-color: #1d9d87;
+  color:#fff;
 }

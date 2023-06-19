@@ -13,11 +13,6 @@ composer global require laravel/installer
 ```
 
 ## Configuración general
-Crear el .env
-```
-cp .env.example .env
-```
-
 Configuración de la conexiones en .env
 ```php
 DB_CONNECTION=mysql
