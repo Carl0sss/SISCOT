@@ -4,6 +4,7 @@ use App\Http\Controllers\Api\ClienteController;
 use App\Http\Controllers\Api\CotizacionController;
 use App\Http\Controllers\Api\DetalleCotizacionController;
 use App\Http\Controllers\Api\ProductoController;
+use App\Http\Controllers\Api\MateriasPrimasController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\VentasController;
@@ -90,4 +91,12 @@ Route::controller(ClienteController::class)->group(function(){
     Route::get('/cliente/{id}','show');
     Route::put('/cliente/{id}','update');
     Route::delete('/cliente/{id}','destroy');
+});
+
+Route::controller(MateriasPrimasController::class)->group(function(){
+    Route::get('/materiasprimas','index');
+    Route::post('/materiasprima','store');
+    Route::get('/materiasprima/{id}','show');
+    Route::put('/materiasprima/{id}','update');
+    Route::delete('/materiasprima/{id}','destroy');
 });
