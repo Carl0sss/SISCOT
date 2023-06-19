@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 body,
 html {
   background-color: rgba(236, 236, 236, 1);
@@ -107,7 +106,6 @@ h2 {
     position: fixed;
   }
 }
-=======
 /* styles.css */
 
 /* Estilos generales */
@@ -199,4 +197,3 @@ button[type="submit"] {
   background-color: #1d9d87;
   color:#fff;
 }
->>>>>>> 96ad4d2307dcbc336711fe35845974062e7df82a

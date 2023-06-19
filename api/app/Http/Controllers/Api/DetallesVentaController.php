@@ -57,7 +57,7 @@ class DetallesVentaController extends Controller
      */
     public function destroy($id)
     {
-        $detalle = Venta::destroy($id);
+        $detalle = DetallesVenta::destroy($id);
         return $detalle;
     }
 }
