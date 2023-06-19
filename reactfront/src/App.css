@@ -1,40 +1,108 @@
-.App {
-  text-align: center;
+body,
+html {
+  background-color: rgba(236, 236, 236, 1);
+  height: 100%;
+  margin: 0;
   background-color: #ECECEC;
   min-height: 100vh;
   width: 100%;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+h2 {
+  padding: 35px;
+  margin-left: 240px;
+  /* Ajusta el valor según el ancho de la barra lateral */
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.container {
+  display: flex;
+  height: 100%;
+}
+
+.content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+}
+
+.sidebar h3 {
+  margin-top: 0;
+
 }
 
 .App-header {
   min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
 
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+  .sidebar-buttons button {
+    display: block;
+    width: 100%;
+    margin-bottom: 10px;
   }
-  to {
-    transform: rotate(360deg);
+
+  .menu-center {
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 45px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-left: 240px;
+    /* Ajusta el valor según el ancho de la barra lateral */
+  }
+
+  .menu-center {
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 45px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .menu-center h3 {
+    color: rgba(157, 149, 149, 0.7);
+    padding-bottom: 35px;
+  }
+
+  .menu-center button {
+    padding: 15px;
+    background-color: rgba(236, 236, 236, 1);
+    border: none;
+    margin: 8px;
+    border-radius: 20px;
+  }
+
+  #contenedor {
+    display: table;
+  }
+
+  #contenidos {
+    display: table-row;
+  }
+
+  #columna1,
+  #columna2,
+  #columna3 {
+    display: table-cell;
+  }
+
+  .sidebar {
+    width: 200px;
+    background-color: #23c4a7;
+    color: white;
+    padding: 20px;
+    height: 100%;
+    /* Agrega esta propiedad */
+    position: fixed;
+    /* Agrega esta propiedad */
+    top: 10;
+    /* Agrega esta propiedad */
+    left: 10;
+    /* Agrega esta propiedad */
+    border-radius: 20px;
+    position: fixed;
   }
 }

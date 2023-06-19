@@ -6,7 +6,8 @@ use App\Http\Controllers\Api\DetalleCotizacionController;
 use App\Http\Controllers\Api\ProductoController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\Api\VentasController;
+use App\Http\Controllers\Api\DetallesVentaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,16 +26,32 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-/* 
-Routes for cotizaciones
-*/
+Route::controller(VentasController::class)->group(function(){
+    Route::get('/ventas','index');
+    Route::post('/venta','store');
+    Route::get('/venta/{id}','show');
+    Route::put('/venta/{id}','update');
+    Route::delete('/venta/{id}','destroy');
+    Route::get('/ventalast','last');
+
+});
+
 Route::controller(CotizacionController::class)->group(function(){
     Route::get('/cotizaciones','index'); 
     Route::post('/cotizacion','store');
     Route::get('/cotizacion/{id}','show');
     Route::put('/cotizacion/{id}','update');
     Route::delete('/cotizacion/{id}','destroy');
+
 });
+Route::controller(DetallesVentaController::class)->group(function(){
+    Route::get('/detalleventa','index');
+    Route::post('/detalleventa','store');
+    Route::get('/detalleventa/{id}','show');
+    Route::put('/detalleventa/{id}','update');
+    Route::delete('/detalleventa/{id}','destroy');
+});
+
 /* 
 Routes for detalleCotizaciones
 */

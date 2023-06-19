@@ -8,7 +8,10 @@ import CreateCotizacion from './components/CreateCotizacion';
 import EditCotizacion from './components/EditCotizacion';
 import VentasMenu from './components/VentasMenu';
 
-function App() {
+{/*Para modal */}
+
+
+const App = () => {
   return (
 
     <BrowserRouter>
@@ -27,6 +30,6 @@ function App() {
       </div>
     </BrowserRouter>
   );
-}
+};
 
 export default App;
