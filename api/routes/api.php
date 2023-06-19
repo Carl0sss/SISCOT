@@ -5,6 +5,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\VentasController;
 use App\Http\Controllers\Api\DetallesVentaController;
+use App\Http\Controllers\Api\ClienteController;
+use App\Http\Controllers\Api\ProductoController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -28,6 +30,7 @@ Route::controller(VentasController::class)->group(function(){
     Route::get('/venta/{id}','show');
     Route::put('/venta/{id}','update');
     Route::delete('/venta/{id}','destroy');
+    Route::get('/ventalast','last');
 
 });
 
@@ -45,4 +48,10 @@ Route::controller(DetallesVentaController::class)->group(function(){
     Route::get('/detalleventa/{id}','show');
     Route::put('/detalleventa/{id}','update');
     Route::delete('/detalleventa/{id}','destroy');
+});
+Route::controller(ClienteController::class)->group(function(){
+    Route::get('/clientes','index');
+});
+Route::controller(ProductoController::class)->group(function(){
+    Route::get('/productos','index');
 });

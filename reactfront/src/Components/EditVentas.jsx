@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import { useNavigate, useParams } from 'react-router-dom'
 
+import { Button, Modal, ModalHeader, ModalBody, ModalFooter, FormGroup, Label, Input } from 'reactstrap';
+
 const endpoint = 'http://127.0.0.1:8000/api/venta/'
 
 const EditVentas = () => {
@@ -46,7 +48,8 @@ const EditVentas = () => {
     }
     getProductById();
   },[]);
-
+//*---------------
+//*--------------
   return (
     <div>
     <h3>Editar cotización</h3>
@@ -157,6 +160,11 @@ const EditVentas = () => {
                 </div>
             </div>
         </form>
+        <div>
+             {/* Otros componentes y funciones de modal aqui */}
+      
+     {/* Fin del modal*/} 
+        </div>
     </div>
 </div>
   )

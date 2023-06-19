@@ -25,7 +25,7 @@ const ShowVentas = () => {
   return (
     <div>
       <div className='d-grid gap-2'>
-        <Link to='/create' className='btn btn-success btn-lg mt-2 mb-2 text-white'>Crear</Link>
+        <Link to='/createVentas' className='btn btn-success btn-lg mt-2 mb-2 text-white'>Crear</Link>
       </div>
       <table className='table table-striped'>
         <thead className='bg-primary text white'>
@@ -52,7 +52,7 @@ const ShowVentas = () => {
                     <td>{venta.DIRECCION_PERSONA}</td>
                     <td>{venta.FECHA_VENTA}</td>
                     <td>
-                        <Link to={`/edit/${venta.ID_VENTA}`} className='btn btn-warning'>Editar</Link>
+                        <Link to={`/editVentas/${venta.ID_VENTA}`} className='btn btn-warning'>Editar</Link>
                         <button onClick={ ()=>deleteVenta(venta.ID_VENTA)}>Delete</button>
                     </td>
                 </tr>

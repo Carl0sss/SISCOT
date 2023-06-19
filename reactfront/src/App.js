@@ -43,9 +43,9 @@ const App = () => {
                 <div className='App'>
                   <BrowserRouter>
                   <Routes>
-                    <Route path='/' element={<ShowVentas/>}/>
-                    <Route path='/create' element={<CreateVentas/>}/>
-                    <Route path='/edit/:id' element={<EditVentas/>}/>
+                    <Route path='/showVentas' element={<ShowVentas/>}/>
+                    <Route path='/createVentas' element={<CreateVentas/>}/>
+                    <Route path='/editVentas/:id' element={<EditVentas/>}/>
                   </Routes>
                   </BrowserRouter>
                 </div>
