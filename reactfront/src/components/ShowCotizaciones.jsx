@@ -25,11 +25,14 @@ const ShowCotizaciones = () => {
     };
 
     return (
-        <div>
+        <div className='bg-white'>
+            <h2>Gestión de cotizaciones</h2>
+            <hr />
             <div className='d-grid gap-2'>
                 <Link to='/create' className='btn btn-success btn-lg mt-8 mb-3'>Crear Cotización</Link>
+                <hr />
                 <table className='table table-striped'>
-                    <thead >
+                    <thead>
                         <th>Codigo</th>
                         <th>Cliente</th>
                         <th>Detalles</th>

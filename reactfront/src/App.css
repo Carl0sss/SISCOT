@@ -1,122 +1,83 @@
-/* styles.css */
-
-/* Estilos generales */
-html {
-  background-color: rgba(236, 236, 236, 1);
-}
-
-h2 {
-  margin-bottom: 20px;
-}
-
-.form-group {
-  margin-bottom: 20px;
-}
-
-.form-label {
-  font-weight: bold;
-}
-
-.form-control {
-  width: 300px;
-  margin-bottom: 10px;
-}
-
-button[type="submit"] {
-  margin-top: 20px;
-  width: 300px;
-}
-
-/* Estilos del componente "Login" */
-.container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 100vh;
-}
-
-#columna2 {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  margin-top: 50px;
-}
-
-.menu-center {
-  background-color: rgba(255, 255, 255, 0.8);
-  padding: 40px;
-  margin-right: 100px;
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+.App {
+  text-align: center;
+  background-color: #ECECEC;
+  min-height: 100vh;
   width: 100%;
 }
 
-.back-button{
-  margin-left: 800px;
-  padding: 10px;
-  align-content: center;
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
 }
-.back-button {
-  margin-top: 20px;
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Recordar arreglar esto */
+.card{
+  cursor: pointer;
+}
+
+/* Some customs styles */
+.logo-image {
+  height: 60px;
+  margin-left: 40px;
+}
+
+.sidebar {
+  width: 240px;
+  background-color: #23C4A7;
+  color: white;
+  padding: 1rem
+}
+
+.navbar {
+  box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.nav-item {
+  display: flex;
+  flex-direction: column;
+  align-items: right;
+  display: block;
+  width: 100%;
+  margin-top: 10px;
+  margin-bottom: 20px;
   padding: 10px 20px;
-  background-color: #23c4a7;
+  background-color: #1c8673;
   color: white;
   border: none;
-  border-radius: 5px;
-  font-size: 16px;
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
 
-.back-button:hover {
-  background-color: #1d9d87;
+.nav-item:hover {
+  background-color: #197a64;
 }
-
-.back-button:hover {
-  background-color: #1d9d87;
-.back-button:hover {
-  background-color: #1d9d87;
-.menu-center button {
-  padding: 15px;
-  background-color: #23c4a7;
-  border: none;
-  margin: 8px;
-  border-radius: 20px;
-}
-
-.menu-center button:hover{
-  background-color: #1d9d87;
-  color:#fff;
-}
-.card-container {
-  display: flex;
-  justify-content: center;
-  margin-top: 20px;
-}
-
-.card {
-  width: 200px;
-  padding: 20px;
-  margin: 10px;
-  text-align: center;
-  background-color: white;
-  padding: 20px;
-  text-align: center;
-  border-radius: 10px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  align-items: center;
-}
-
-.menu-center button:hover{
-  background-color: #1d9d87;
-  color:#fff;
-}}
-.card button{
-  margin-top: 20px;
-  background-color: #23c4a7;
-}}

@@ -1,6 +1,5 @@
 import React from 'react';
-import './Navbar.css';
-import torogoz from '../images/torogoz-l.png'
+import torogoz from '../images/logo.png'
 
 
 const NavBar = () => {

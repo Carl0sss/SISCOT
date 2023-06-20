@@ -1,6 +1,5 @@
 import React from 'react'
 import ventas from '../images/ventas.jpg'
-import { Link } from 'react-router-dom';
 
 const ModuleCard = (props) => {
 
@@ -15,14 +14,13 @@ const ModuleCard = (props) => {
     };
 
     return (
-        <Link to='/show'>
-            <div className='card' style={cardStyle} onClick={handleClick}>
-                <img src={ventas} className="card-img-top" alt="..."></img>
-                <div className="card-body">
-                    <p className="card-title">{props.moduleName}</p>
-                </div>
+
+        <div className='card' style={cardStyle} onClick={handleClick}>
+            <img src={ventas} className="card-img-top" alt="..."></img>
+            <div className="card-body">
+                <p className="card-title">{props.moduleName}</p>
             </div>
-        </Link>
+        </div>
     )
 }
 

@@ -40,7 +40,6 @@ class CotizacionController extends Controller {
         // Getting the last modified id by date
         $lastId = DB::table( 'cotizaciones' )->orderBy( 'FECHA_INGRESOS_COTIZACION', 'desc' )->value( 'ID_COTIZACION' );
 
-
         // Create detalles cotizaion
         $detalles = $request->input( 'detalles' );
         if ( $detalles ) {
