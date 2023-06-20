@@ -63,7 +63,7 @@ const CreateCotizacion = () => {
             detalles: [...cotizacionData.detalles, { ...detalleData, SUBTOTA_COTIZACION: subtotal }],
             SUBTOTAL_COTIZACION: cotizacionData.SUBTOTAL_COTIZACION + subtotal,
             IVA_COTIZACION: (cotizacionData.SUBTOTAL_COTIZACION + subtotal) * 0.13,
-            TOTAL_COTIZACION: cotizacionData.SUBTOTAL_COTIZACION + (cotizacionData.SUBTOTAL_COTIZACION + subtotal) * 0.13,
+            TOTAL_COTIZACION: cotizacionData.SUBTOTAL_COTIZACION + (cotizacionData.SUBTOTAL_COTIZACION + subtotal) * 0.13 + subtotal,
         });
 
         setDetalleData({
@@ -166,6 +166,7 @@ const CreateCotizacion = () => {
                                     onChange={handleCotizacionInputChange}
                                     type='number'
                                     className='form-control'
+                                    readOnly
                                 />
                                 <small className="text-muted">Sub total</small>
                             </div>
@@ -179,6 +180,7 @@ const CreateCotizacion = () => {
                                     onChange={handleCotizacionInputChange}
                                     type='number'
                                     className='form-control'
+                                    readOnly
                                 />
                                 <small className="text-muted">IVA</small>
                             </div>
@@ -192,6 +194,7 @@ const CreateCotizacion = () => {
                                     onChange={handleCotizacionInputChange}
                                     type='number'
                                     className='form-control'
+                                    readOnly
                                 />
                                 <small className="text-muted">Total</small>
                             </div>

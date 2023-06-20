@@ -41,9 +41,14 @@
 }
 
 /* Recordar arreglar esto */
-.card{
+.card {
   cursor: pointer;
 }
+
+/* .card-img-top {
+  width: 15rem;
+  height: 10rem;
+} */
 
 /* Some customs styles */
 .logo-image {
@@ -76,8 +81,31 @@
   border: none;
   cursor: pointer;
   transition: background-color 0.3s ease;
+
 }
 
 .nav-item:hover {
   background-color: #197a64;
+}
+
+.defaultLayout {
+  background-color: #ECECEC;
+}
+
+/* Styles for tables */
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table th,
+.table td {
+  padding: 8px;
+  text-align: center;
+  vertical-align: middle;
+  background-color: #ffff;
+}
+
+.table th {
+  background-color: #ECECEC;
 }

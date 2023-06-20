@@ -5,6 +5,7 @@ import CreateCotizacion from "./components/CreateCotizacion";
 import EditCotizacion from "./components/EditCotizacion";
 import VentasMenu from "./components/VentasMenu";
 import NotFound from "./components/NotFound";
+import InventariosMenu from "./components/InventariosMenu";
 
 const router = createBrowserRouter([
     {
@@ -12,19 +13,23 @@ const router = createBrowserRouter([
         element: <DefaultLayout />,
         children: [
             {
-                path: '/ventas/',
+                path: '/ventas',
                 element: <VentasMenu />,
             },
             {
-                path: 'show',
+                path: '/inventarios',
+                element: <InventariosMenu />,
+            },
+            {
+                path: '/show',
                 element: <ShowCotizaciones />
             },
             {
-                path: 'edit/:id',
+                path: '/edit/:id',
                 element: <EditCotizacion />
             },
             {
-                path: 'create',
+                path: '/create',
                 element: <CreateCotizacion />
             }
         ]
