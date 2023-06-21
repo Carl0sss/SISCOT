@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import { Link } from 'react-router-dom'
+import { VscEdit } from "react-icons/vsc";
+import { VscTrash } from "react-icons/vsc";
 
 const endpoint = 'http://127.0.0.1:8000/api'
 
 const ShowCotizaciones = () => {
-    
+
     const [cotizaciones, setCotizaciones] = useState([]);
 
     useEffect(() => {
@@ -16,7 +18,7 @@ const ShowCotizaciones = () => {
         const response = await axios.get(`${endpoint}/cotizaciones`);
 
         setCotizaciones(response.data);
-        
+
     };
 
     const deleteCotizacion = async (id) => {
@@ -49,8 +51,8 @@ const ShowCotizaciones = () => {
                                 <td>{cotizacion.FECHA_INGRESOS_COTIZACION}</td>
                                 <td>$ {cotizacion.TOTAL_COTIZACION}</td>
                                 <td>
-                                    <Link to={`/edit/${cotizacion.ID_COTIZACION}`} className='btn btn-warning'>Editar</Link>
-                                    <button className='btn btn-danger' onClick={() => deleteCotizacion(cotizacion.ID_COTIZACION)}>Eliminar</button>
+                                    <Link to={`/edit/${cotizacion.ID_COTIZACION}`} className='btn btn-warning mx-2'><VscEdit />Editar</Link>
+                                    <button className='btn btn-danger mx-2' onClick={() => deleteCotizacion(cotizacion.ID_COTIZACION)}><VscTrash />Eliminar</button>
                                 </td>
                             </tr>
                         ))}

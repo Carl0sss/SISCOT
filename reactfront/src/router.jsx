@@ -6,6 +6,9 @@ import EditCotizacion from "./components/EditCotizacion";
 import VentasMenu from "./components/VentasMenu";
 import NotFound from "./components/NotFound";
 import InventariosMenu from "./components/InventariosMenu";
+import ShowVentas from "./components/ShowVentas";
+import EditVentas from "./components/EditVentas";
+import CreateVentas from "./components/CreateVentas";
 
 const router = createBrowserRouter([
     {
@@ -31,6 +34,18 @@ const router = createBrowserRouter([
             {
                 path: '/create',
                 element: <CreateCotizacion />
+            },
+            {
+                path: '/showVentas',
+                element: <ShowVentas />
+            },
+            {
+                path: '/editVenta/:id',
+                element: <EditVentas />
+            },
+            {
+                path: '/createVenta',
+                element: <CreateVentas />
             }
         ]
     },
