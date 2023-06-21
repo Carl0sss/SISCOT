@@ -61,7 +61,7 @@ const EditCotizacion = () => {
             <div className="container">
                 <form onSubmit={update} className='d-flex'>
                     <div className='col'>
-                    <div className="mb-3 row">
+                        <div className="mb-3 row">
                             <label className="col-4 col-form-label">Cliente</label>
                             <div className="col-8">
                                 <select
@@ -78,7 +78,7 @@ const EditCotizacion = () => {
                         <div className="mb-3 row">
                             <label className="col-4 col-form-label">Descripción</label>
                             <div className="col-8">
-                                <textarea 
+                                <textarea
                                     value={DESCRIPCION_COTIZACIOIN}
                                     onChange={(e) => setDescripcion(e.target.value)}
                                     type='text'
@@ -113,13 +113,13 @@ const EditCotizacion = () => {
                         </div>
                         <div className="mb-3 row">
                             <div className="col-8">
-                                <button type="submit" className="btn btn-primary btn-lg">Guardar</button>
-                                <a className='btn btn-outline-secundary btn-lg' href='/show'>Cancelar</a>
+                                <button type="submit" className="btn btn-primary mx-2">Guardar</button>
+                                <button type="button" className="btn btn-outline-secondary mx-2" onClick={() => navigate('/show')}>Cancelar</button>
                             </div>
                         </div>
                     </div>
                     <div className='col'>
-                    <div className="mb-3 row">
+                        <div className="mb-3 row">
                             <label className="col-4 col-form-label">Total</label>
                             <div className="col-8">
                                 <input

@@ -201,9 +201,9 @@ const CreateCotizacion = () => {
                         </div>
                         <div className="mb-3 row">
                             <div className="col-8">
-                                <button type="submit" className="btn btn-primary">Guardar</button>
+                                <button type="submit" className="btn btn-primary mx-2">Guardar</button>
 
-                                <button className="btn btn-outline-secondary" href='/show'>Cancelar</button>
+                                <button type="button" className="btn btn-outline-secondary mx-2" onClick={() => navigate('/show')}>Cancelar</button>
                             </div>
                         </div>
                     </div>
