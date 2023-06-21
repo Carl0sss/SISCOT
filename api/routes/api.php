@@ -6,10 +6,12 @@ use App\Http\Controllers\Api\DetalleCotizacionController;
 use App\Http\Controllers\Api\ProductoController;
 use App\Http\Controllers\Api\MateriasPrimasController;
 use App\Http\Controllers\Api\InvProductoController;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\VentasController;
 use App\Http\Controllers\Api\DetallesVentaController;
+use App\Http\Controllers\Api\PedidoController;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Route;
+
 
 /*
 |--------------------------------------------------------------------------

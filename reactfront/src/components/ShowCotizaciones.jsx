@@ -16,9 +16,7 @@ const ShowCotizaciones = () => {
 
     const getAllCotizaciones = async () => {
         const response = await axios.get(`${endpoint}/cotizaciones`);
-
         setCotizaciones(response.data);
-
     };
 
     const deleteCotizacion = async (id) => {
@@ -35,12 +33,14 @@ const ShowCotizaciones = () => {
                 <hr />
                 <table className='table table-hover'>
                     <thead>
-                        <th>Codigo</th>
-                        <th>Cliente</th>
-                        <th>Detalles</th>
-                        <th>Fecha</th>
-                        <th>Total</th>
-                        <th>Acciones</th>
+                        <tr>
+                            <th>Codigo</th>
+                            <th>Cliente</th>
+                            <th>Detalles</th>
+                            <th>Fecha</th>
+                            <th>Total</th>
+                            <th>Acciones</th>
+                        </tr>
                     </thead>
                     <tbody>
                         {cotizaciones.map((cotizacion) => (

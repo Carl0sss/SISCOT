@@ -82,7 +82,8 @@ class CotizacionController extends Controller {
         $cotizacion->TOTAL_COTIZACION = $request->TOTAL_COTIZACION;
         $cotizacion->SUBTOTAL_COTIZACION = $request->SUBTOTAL_COTIZACION;
         $cotizacion->IVA_COTIZACION = $request->IVA_COTIZACION;
-        $cotizacion->FECHA_INGRESOS_COTIZACION = $request->FECHA_INGRESOS_COTIZACION;
+        /* $cotizacion->FECHA_INGRESOS_COTIZACION = $request->FECHA_INGRESOS_COTIZACION;
+        */
         $cotizacion->FECHA_ENTREGA_EST_COTIZACION = $request->FECHA_ENTREGA_EST_COTIZACION;
         $cotizacion->save();
     }

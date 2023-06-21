@@ -6,17 +6,10 @@ const endpoint = 'http://127.0.0.1:8000/api/cotizacion'
 const endpoint2 = 'http://127.0.0.1:8000/api'
 
 const CreateCotizacion = () => {
+
+
     const [productos, setProductos] = useState([]);
     const [clientes, setClientes] = useState([]);
-    /*     const [ID_CLIENTE, setCliente] = useState('');
-        const [DESCRIPCION_COTIZACIOIN, setDescripcion] = useState('');
-        const [TOTAL_COTIZACION, setTotal] = useState(0);
-        const [SUBTOTAL_COTIZACION, setSubtotal] = useState(0);
-        const [IVA_COTIZACION, setIva] = useState(0);
-        const [FECHA_INGRESOS_COTIZACION, setFechaI] = useState('');
-        const [FECHA_ENTREGA_EST_COTIZACION, setFechaE] = useState(''); */
-
-    /* Cotización object */
     const [cotizacionData, setCotizacionData] = useState({
         ID_CLIENTE: '',
         DESCRIPCION_COTIZACIOIN: '',
@@ -76,8 +69,6 @@ const CreateCotizacion = () => {
     };
 
     /* Functions */
-
-
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -111,171 +102,144 @@ const CreateCotizacion = () => {
         <div className='bg-white'>
             <h4>Registrar cotización</h4>
             <div className="container">
-                <form onSubmit={store} className='d-flex'>
-                    <div className='col'>
-                        <div className="mb-3 row">
-                            <label className="col-4 col-form-label">Cliente</label>
-                            <div className="col-8">
-                                <select
-                                    name="ID_CLIENTE"
-                                    className='form-select'
-                                    onChange={handleCotizacionInputChange}>
-                                    <option selected>-- Seleccione un Cliente --</option>
-                                    {clientes.map((cliente) => (
-                                        <option value={cliente.ID_CLIENTE}>{cliente.NOMBRE_CLIENTE}</option>
-                                    ))}
-                                </select>
-                                <small className="text-muted">ID Cliente</small>
-                            </div>
+                <form onSubmit={store} className='d-flex row'>
+                    <div className='col-md-6'>
+                        <div className="mb-3">
+                            <label className="form-label">Cliente</label>
+                            <select
+                                name="ID_CLIENTE"
+                                className='form-select'
+                                onChange={handleCotizacionInputChange}>
+                                <option selected>-- Seleccione un Cliente --</option>
+                                {clientes.map((cliente) => (
+                                    <option value={cliente.ID_CLIENTE}>{cliente.NOMBRE_CLIENTE}</option>
+                                ))}
+                            </select>
+                            <small className="form-text text-muted">ID Cliente</small>
                         </div>
-                        <div className="mb-3 row">
-                            <label className="col-4 col-form-label">Descripción</label>
-                            <div className="col-8">
-                                <textarea
-                                    name='DESCRIPCION_COTIZACIOIN'
-                                    value={cotizacionData.DESCRIPCION_COTIZACIOIN}
-                                    onChange={handleCotizacionInputChange}
-                                    type='text'
-                                    className='form-control'
-                                />
-                                <small className="text-muted">Ingrese la descripcion</small>
-                            </div>
+                        <div className="mb-3">
+                            <label className="form-label">Descripción</label>
+                            <textarea
+                                name='DESCRIPCION_COTIZACIOIN'
+                                value={cotizacionData.DESCRIPCION_COTIZACIOIN}
+                                onChange={handleCotizacionInputChange}
+                                type='text'
+                                className='form-control'
+                            />
+                            <small className="form-text text-muted">Ingrese la descripcion</small>
                         </div>
-                        <div className="mb-3 row">
-                            <label className="col-4 col-form-label">Fecha entrega</label>
-                            <div className="col-8">
-                                <input
-                                    name='FECHA_ENTREGA_EST_COTIZACION'
-                                    value={cotizacionData.FECHA_ENTREGA_EST_COTIZACION}
-                                    onChange={handleCotizacionInputChange}
-                                    type='date'
-                                    className='form-control'
-                                />
-                                <small className="text-muted">Fecha estimada de entrega</small>
-                            </div>
+                        <div className="mb-3">
+                            <label className="form-label">Fecha entrega</label>
+                            <input
+                                name='FECHA_ENTREGA_EST_COTIZACION'
+                                value={cotizacionData.FECHA_ENTREGA_EST_COTIZACION}
+                                onChange={handleCotizacionInputChange}
+                                type='date'
+                                className='form-control'
+                            />
+                            <small className="form-text text-muted">Fecha estimada de entrega</small>
                         </div>
                     </div>
-                    <div className='col'>
-
-                        <div className="mb-3 row">
-                            <label className="col-4 col-form-label">Sub total</label>
-                            <div className="col-8">
-                                <input
-                                    name='SUBTOTAL_COTIZACION'
-                                    value={cotizacionData.SUBTOTAL_COTIZACION}
-                                    onChange={handleCotizacionInputChange}
-                                    type='number'
-                                    className='form-control'
-                                    readOnly
-                                />
-                                <small className="text-muted">Sub total</small>
-                            </div>
+                    <div className='col-md-2'>
+                        <div className="mb-3">
+                            <label className="form-label">Sub total</label>
+                            <input
+                                name='SUBTOTAL_COTIZACION'
+                                value={cotizacionData.SUBTOTAL_COTIZACION}
+                                onChange={handleCotizacionInputChange}
+                                type='number'
+                                className='form-control'
+                                readOnly
+                            />
+                            <small className="form-text text-muted">Sub total</small>
                         </div>
-                        <div className="mb-3 row">
-                            <label className="col-4 col-form-label">IVA</label>
-                            <div className="col-8">
-                                <input
-                                    name='IVA_COTIZACION'
-                                    value={cotizacionData.IVA_COTIZACION}
-                                    onChange={handleCotizacionInputChange}
-                                    type='number'
-                                    className='form-control'
-                                    readOnly
-                                />
-                                <small className="text-muted">IVA</small>
-                            </div>
+                        <div className="mb-3">
+                            <label className="form-label">IVA</label>
+                            <input
+                                name='IVA_COTIZACION'
+                                value={cotizacionData.IVA_COTIZACION}
+                                onChange={handleCotizacionInputChange}
+                                type='number'
+                                className='form-control'
+                                readOnly
+                            />
+                            <small className="form-text text-muted">IVA</small>
                         </div>
-                        <div className="mb-3 row">
-                            <label className="col-4 col-form-label">Total</label>
-                            <div className="col-8">
-                                <input
-                                    name='TOTAL_COTIZACION'
-                                    value={cotizacionData.TOTAL_COTIZACION}
-                                    onChange={handleCotizacionInputChange}
-                                    type='number'
-                                    className='form-control'
-                                    readOnly
-                                />
-                                <small className="text-muted">Total</small>
-                            </div>
-                        </div>
-                        <div className="mb-3 row">
-                            <div className="col-8">
-                                <button type="submit" className="btn btn-primary mx-2">Guardar</button>
-
-                                <button type="button" className="btn btn-outline-secondary mx-2" onClick={() => navigate('/show')}>Cancelar</button>
-                            </div>
+                        <div className="mb-3">
+                            <label className="form-label">Total</label>
+                            <input
+                                name='TOTAL_COTIZACION'
+                                value={cotizacionData.TOTAL_COTIZACION}
+                                onChange={handleCotizacionInputChange}
+                                type='number'
+                                className='form-control'
+                                readOnly
+                            />
+                            <small className="form-text text-muted">Total</small>
                         </div>
                     </div>
-
+                    <div className="col-12">
+                        <button type="submit" className="btn btn-primary mx-2">Guardar</button>
+                        <button type="button" className="btn btn-outline-secondary mx-2" onClick={() => navigate('/show')}>Cancelar</button>
+                    </div>
                 </form>
             </div>
             <hr />
             <h6>Detalles Cotización</h6>
             <div className="container">
-                <form onSubmit={handleAgregarDetalle} className='d-flex'>
-                    <div className='col'>
-                        <div className="mb-3 row">
-                            <div className="mb-3 row">
-                                <label className="col-4 col-form-label">Producto</label>
-                                <div className="col-8">
-                                    <select
-                                        name='ID_PRODUCTO'
-                                        onChange={handleDetalleInputChange}
-                                        className='form-select'>
-                                        <option selected>-- Seleccione un Producto --</option>
-                                        {productos.map((producto) => (
-                                            <option value={producto.ID_PRODUCTO}>{producto.NOMBRE_PRODUCTO}</option>
-                                        ))}
-                                    </select>
-                                    <small className="text-muted">Seleccióne un producto</small>
-                                </div>
-                            </div>
-                            <label className="col-4 col-form-label">Especificaciones</label>
-                            <div className="col-8">
-                                <textarea
-                                    name='ESPECIFICACIONES_COTIZACION'
-                                    value={detalleData.ESPECIFICACIONES_COTIZACION}
-                                    onChange={handleDetalleInputChange}
-                                    type='text'
-                                    className='form-control'
-                                />
-                                <small className="text-muted">Ingrese la descripcion</small>
-                            </div>
+                <form onSubmit={handleAgregarDetalle} className='d-flex row'>
+                    <div className='col-md-6'>
+                        <div className="mb-3">
+                            <label className="form-label">Producto</label>
+                            <select
+                                name='ID_PRODUCTO'
+                                onChange={handleDetalleInputChange}
+                                className='form-select'>
+                                <option selected>-- Seleccione un Producto --</option>
+                                {productos.map((producto) => (
+                                    <option value={producto.ID_PRODUCTO}>{producto.NOMBRE_PRODUCTO}</option>
+                                ))}
+                            </select>
+                            <small className="form-text text-muted">Seleccióne un producto</small>
                         </div>
-                        <div className="mb-3 row">
-                            <div className="col-8">
-                                <button type="submit" className="btn btn-primary">Agregar producto</button>
-                            </div>
+                        <div className='mb-3'>
+                            <label className="form-label">Especificaciones</label>
+                            <textarea
+                                name='ESPECIFICACIONES_COTIZACION'
+                                value={detalleData.ESPECIFICACIONES_COTIZACION}
+                                onChange={handleDetalleInputChange}
+                                type='text'
+                                className='form-control'
+                            />
+                            <small className="form-text text-muted">Ingrese la descripcion</small>
                         </div>
                     </div>
-                    <div className='col'>
-                        <div className="mb-3 row">
-                            <label className="col-4 col-form-label">Cantidad</label>
-                            <div className="col-8">
-                                <input
-                                    name='CANTIDAD_COTIZACION'
-                                    value={detalleData.CANTIDAD_COTIZACION}
-                                    onChange={handleDetalleInputChange}
-                                    type='number'
-                                    className='form-control'
-                                />
-                                <small className="text-muted">Cantidad</small>
-                            </div>
+                    <div className='col-md-2'>
+                        <div className="mb-3">
+                            <label className="form-label">Cantidad</label>
+                            <input
+                                name='CANTIDAD_COTIZACION'
+                                value={detalleData.CANTIDAD_COTIZACION}
+                                onChange={handleDetalleInputChange}
+                                type='number'
+                                className='form-control'
+                            />
+                            <small className="form-text text-muted">Cantidad</small>
                         </div>
-                        <div className="mb-3 row">
-                            <label className="col-4 col-form-label">Precio unitario</label>
-                            <div className="col-8">
-                                <input
-                                    name='PRECIO_UNITARIO'
-                                    value={detalleData.PRECIO_UNITARIO}
-                                    onChange={handleDetalleInputChange}
-                                    type='number'
-                                    className='form-control'
-                                />
-                                <small className="text-muted">Precio unitario</small>
-                            </div>
+                        <div className="mb-3">
+                            <label className="form-label">Precio unitario</label>
+                            <input
+                                name='PRECIO_UNITARIO'
+                                value={detalleData.PRECIO_UNITARIO}
+                                onChange={handleDetalleInputChange}
+                                type='number'
+                                className='form-control'
+                            />
+                            <small className="form-text text-muted">Precio unitario</small>
                         </div>
+                    </div>
+                    <div className="col-12">
+                        <button type="submit" className="btn btn-primary">Agregar producto</button>
                     </div>
                 </form>
             </div>

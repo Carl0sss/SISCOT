@@ -9,6 +9,15 @@ import InventariosMenu from "./components/InventariosMenu";
 import ShowVentas from "./components/ShowVentas";
 import EditVentas from "./components/EditVentas";
 import CreateVentas from "./components/CreateVentas";
+import CreateMateriasPrimas from "./components/CreateMateriasPrimas";
+import CreatePedido from "./components/CreatePedido";
+import CreateProduct from "./components/CreateProduct";
+import EditMateriasPrimas from "./components/EditMateriasPrimas";
+import EditPedido from "./components/EditPedido";
+import EditProduct from "./components/EditProduct";
+import ShowMateriasPrimas from "./components/ShowMateriasPrimas";
+import ShowPedidos from "./components/ShowPedidos";
+import ShowProduct from "./components/ShowProduct";
 
 const router = createBrowserRouter([
     {
@@ -46,6 +55,42 @@ const router = createBrowserRouter([
             {
                 path: '/createVenta',
                 element: <CreateVentas />
+            },
+            {
+                path: '/showMateriasPrimas',
+                element: <ShowMateriasPrimas />
+            },
+            {
+                path: '/editMateriasPrima/:id',
+                element: <EditMateriasPrimas />
+            },
+            {
+                path: '/createMateriasPrima',
+                element: <CreateMateriasPrimas />
+            },
+            {
+                path: '/showPedidos',
+                element: <ShowPedidos />
+            },
+            {
+                path: '/editPedido/:id',
+                element: <EditPedido />
+            },
+            {
+                path: '/createPedido',
+                element: <CreatePedido />
+            },
+            {
+                path: '/showProductos',
+                element: <ShowProduct />
+            },
+            {
+                path: '/editProducto/:id',
+                element: <EditProduct />
+            },
+            {
+                path: '/createProducto',
+                element: <CreateProduct />
             }
         ]
     },
