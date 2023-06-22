@@ -67,7 +67,7 @@ class InvProductoController extends Controller {
 
         /* return response()->json( [ 'message' => 'Cotización creada exitosamente' ] );
         */
-        return response()->json( [ 'message' => 'Cotización creada exitosamente', 'id' => $lastId ] );
+        return response()->json( [ 'message' => 'Stock actualizado correctamente', 'id' => $lastId ] );
     }
 
     /**
@@ -85,7 +85,7 @@ class InvProductoController extends Controller {
     */
 
     public function update( Request $request, $id ) {
-        $inventarioProducto1 = InventarioProducto::findOrFail( $request->id );
+        $inventarioProducto1 = InventarioProducto::findOrFail( $id );
         $inventarioProducto1->ID_INVENTARIO_PRODUCTOS = $request->ID_INVENTARIO_PRODUCTOS;
         $inventarioProducto1->ID_PRODUCTO = $request->ID_PRODUCTO;
         $inventarioProducto1->PRECIO_UNITARIO = $request->PRECIO_UNITARIO;
@@ -100,6 +100,5 @@ class InvProductoController extends Controller {
     public function destroy( $id ) {
         $inventarioProducto = InventarioProducto::destroy( $id );
         return $inventarioProducto;
-
     }
 }

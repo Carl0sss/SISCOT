@@ -25,7 +25,7 @@ class MateriasPrimasController extends Controller {
     }
 
     public function show( $id ) {
-        $MateriasPrimas = MateriasPrima::find( $id );
+        $MateriasPrimas = MateriasPrima::with( 'inventarios_materias_primas' )->find( $id );
         return $MateriasPrimas;
     }
 

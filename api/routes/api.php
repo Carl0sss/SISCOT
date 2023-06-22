@@ -9,6 +9,7 @@ use App\Http\Controllers\Api\InvProductoController;
 use App\Http\Controllers\Api\VentasController;
 use App\Http\Controllers\Api\DetallesVentaController;
 use App\Http\Controllers\Api\PedidoController;
+use App\Http\Controllers\Api\InvMateriasPrimaController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -110,5 +111,13 @@ Route::controller(InvProductoController::class)->group(function(){
     Route::get('/inventario/{id}','show');
     Route::put('/inventario/{id}','update');
     Route::delete('/inventario/{id}','destroy');
+});
+
+Route::controller(InvMateriasPrimaController::class)->group(function(){
+    Route::get('/inventariosmp','index');
+    Route::post('/inventariomp','store');
+    Route::get('/inventariomp/{id}','show');
+    Route::put('/inventariomp/{id}','update');
+    Route::delete('/inventariomp/{id}','destroy');
 });
 
