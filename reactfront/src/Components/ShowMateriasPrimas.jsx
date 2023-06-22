@@ -26,7 +26,7 @@ export const ShowMateriasPrimas = () => {
   return (
     <div>
         <div className='d-grip gap-2'>
-            <Link to="/create" className='btn btn-success btn-lg mt-2 mb-2 text-white'>Create</Link>
+            <Link to="/createMateriasPrima" className='btn btn-success btn-lg mt-2 mb-2 text-white'>Create</Link>
         </div>
         <table className='table table-striped'>
             <thead className='bg-primary text-white'>

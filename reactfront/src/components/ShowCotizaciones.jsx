@@ -3,6 +3,7 @@ import axios from 'axios'
 import { Link } from 'react-router-dom'
 import { VscEdit } from "react-icons/vsc";
 import { VscTrash } from "react-icons/vsc";
+import { VscAdd } from "react-icons/vsc";
 
 const endpoint = 'http://127.0.0.1:8000/api'
 
@@ -29,7 +30,7 @@ const ShowCotizaciones = () => {
             <h2>Gestión de cotizaciones</h2>
             <hr />
             <div className='d-grid gap-2'>
-                <Link to='/create' className='btn btn-success btn-lg mt-8 mb-3'>Crear Cotización</Link>
+                <Link to='/create' className='btn btn-success btn-lg mt-8 mb-3'><VscAdd size={24} />Crear Cotización</Link>
                 <hr />
                 <table className='table table-hover'>
                     <thead>

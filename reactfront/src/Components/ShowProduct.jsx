@@ -28,9 +28,9 @@ const ShowProducts = () => {
   return (
     <div>
       <div className='d-grid gap-2'>
-        <button className='button-create'>
+        <button className='btn btn-success btn-lg mt-8 mb-3'>
           <VscAdd size={24} />
-          <Link to='/create' className='btn-create'> Ingresar un producto al inventario</Link>
+          <Link to='/createProducto' className='btn-create text-white'> Ingresar un producto al inventario</Link>
         </button>
       </div>
       <table className='table table-striped'>
