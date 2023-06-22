@@ -1,12 +1,21 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
+/* import toast, { Toaster } from 'react-hot-toast'; */
 
 const endpoint = 'http://127.0.0.1:8000/api/cotizacion'
 const endpoint2 = 'http://127.0.0.1:8000/api'
 
 const CreateCotizacion = () => {
+    /* const notify = () => toast.success('Cotización creada con exito', {
+        position: 'top-right',
+        style: {
 
+            background: '#72F961',
+            minWidth: '300px',
+        }
+    }
+    ); */
 
     const [productos, setProductos] = useState([]);
     const [clientes, setClientes] = useState([]);
@@ -88,9 +97,9 @@ const CreateCotizacion = () => {
 
     const store = async (event) => {
         event.preventDefault();
+        /* notify(); */
         await axios.post(endpoint, cotizacionData).then((response) => {
             console.log(response.data);
-            // Realizar alguna acción después de enviar los datos
             navigate('/show');
         }).catch((error) => {
             console.error(error);
@@ -101,6 +110,7 @@ const CreateCotizacion = () => {
     return (
         <div className='bg-white'>
             <h4>Registrar cotización</h4>
+            {/* <Toaster /> */}
             <div className="container">
                 <form onSubmit={store} className='d-flex row'>
                     <div className='col-md-6'>

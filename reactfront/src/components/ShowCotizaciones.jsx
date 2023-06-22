@@ -4,12 +4,22 @@ import { Link } from 'react-router-dom'
 import { VscEdit } from "react-icons/vsc";
 import { VscTrash } from "react-icons/vsc";
 import { VscAdd } from "react-icons/vsc";
-
 import { format } from 'date-fns';
+/* import toast, { Toaster } from 'react-hot-toast'; */
+
 
 const endpoint = 'http://127.0.0.1:8000/api'
 
 const ShowCotizaciones = () => {
+
+    /* const notify = () => toast.success('Cotización eliminada con exito', {
+        position: 'top-right',
+        style: {
+            background: '#FA3834',
+            minWidth: '300px',
+        }
+    }
+    ); */
 
     const [cotizaciones, setCotizaciones] = useState([]);
 
@@ -24,11 +34,13 @@ const ShowCotizaciones = () => {
 
     const deleteCotizacion = async (id) => {
         await axios.delete(`${endpoint}/cotizacion/${id}`);
+        /* notify(); */
         getAllCotizaciones();
     };
 
     return (
         <div className='bg-white'>
+            {/* <Toaster /> */}
             <h2>Gestión de cotizaciones</h2>
             <hr />
             <div className='d-grid gap-2'>
@@ -63,6 +75,7 @@ const ShowCotizaciones = () => {
                     </tbody>
                 </table>
             </div>
+
         </div>
     )
 }
