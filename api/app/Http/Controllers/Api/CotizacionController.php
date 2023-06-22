@@ -93,6 +93,7 @@ class CotizacionController extends Controller {
     */
 
     public function destroy( $id ) {
+        DetalleCotizacion::where( 'ID_COTIZACION', $id )->delete();
         Cotizacione::destroy( $id );
     }
 }

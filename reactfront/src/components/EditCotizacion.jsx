@@ -9,7 +9,15 @@ const EditCotizacion = () => {
 
     const [clientes, setClientes] = useState([]);
     const [productos, setProductos] = useState([]);
-    const [detalleCotizacion, setDetalleCotizacion] = useState([]);
+    const [detalleData, setDetalleCotizacion] = useState(
+        {
+            ID_PRODUCTO: '',
+            ESPECIFICACIONES_COTIZACION: '',
+            CANTIDAD_COTIZACION: 0,
+            PRECIO_UNITARIO: 0,
+            SUBTOTA_COTIZACION: 0
+        }
+    );
 
     const [ID_CLIENTE, setCliente] = useState('');
     const [DESCRIPCION_COTIZACIOIN, setDescripcion] = useState('');
@@ -18,6 +26,18 @@ const EditCotizacion = () => {
     const [IVA_COTIZACION, setIva] = useState(0);
     const [FECHA_INGRESOS_COTIZACION, setFechaI] = useState('');
     const [FECHA_ENTREGA_EST_COTIZACION, setFechaE] = useState('');
+
+    const findName = () => {
+        let name = '';
+        clientes.map((cliente) => {
+            if (cliente.ID_CLIENTE === ID_CLIENTE) {
+                name = cliente.NOMBRE_CLIENTE;
+            }
+        });
+        return name;
+    }
+
+    const nombrecliente = findName();
 
 
     const navigate = useNavigate();
@@ -28,11 +48,23 @@ const EditCotizacion = () => {
         const response = await axios.get(`${endpoint2}/clientes`);
         setClientes(response.data);
     };
+
     const getAllProductos = async () => {
         const response = await axios.get(`${endpoint2}/productos`);
         setProductos(response.data);
 
     }
+
+    const getAllDetalles = async () => {
+        const response = await axios.get(`${endpoint2}/detalleCotizaciones`);
+        setDetalleCotizacion(response.data);
+
+    }
+
+    const deleteDetalle = async (idDetalle) => {
+        await axios.delete(`${endpoint}/detalleCotizacion/${idDetalle}`);
+        getAllDetalles();
+    };
 
     const update = async (event) => {
         event.preventDefault();
@@ -64,6 +96,7 @@ const EditCotizacion = () => {
         getCotizacionById();
         getAllClientes();
         getAllProductos();
+        getAllDetalles();
     }, []);
 
     return (
@@ -77,7 +110,7 @@ const EditCotizacion = () => {
                             <select
                                 className='form-select'
                                 onChange={(e) => setCliente(e.target.value)}>
-                                <option value={ID_CLIENTE} selected>{ID_CLIENTE}</option>
+                                <option value={ID_CLIENTE} selected>{nombrecliente}</option>
                                 {clientes.map((cliente) => (
                                     <option value={cliente.ID_CLIENTE}>{cliente.NOMBRE_CLIENTE}</option>
                                 ))}
@@ -94,16 +127,7 @@ const EditCotizacion = () => {
                             />
                             <small className="form-text text-muted">Ingrese la descripcion</small>
                         </div>
-                        {/* <div className="mb-3">
-                            <label className="form-label">Fecha</label>
-                            <input
-                                value={FECHA_INGRESOS_COTIZACION}
-                                onChange={(e) => setFechaI(e.target.value)}
-                                type='date'
-                                className='form-control'
-                            />
-                            <small className="form-text text-muted">Fecha</small>
-                        </div> */}
+
                         <div className="mb-3">
                             <label className="form-label">Fecha Entrega</label>
                             <input
