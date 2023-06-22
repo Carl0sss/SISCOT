@@ -6,23 +6,28 @@ import { Link } from 'react-router-dom';
 const endpoint = 'http://127.0.0.1:8000/api';
 
 const ShowProducts = () => {
-  const [inventario, setInventario] = useState([]);
+  const [productos, setProductos] = useState([]);
 
   useEffect(() => {
     getAllProductosT();
   }, []);
 
-
   const getAllProductosT = async () => {
-    const response = await axios.get(`${endpoint}/productos`);
-    setInventario(response.data);
+    try {
+      const response = await axios.get(`${endpoint}/productos`);
+      setProductos(response.data);
+    } catch (error) {
+      console.error('Error al obtener los productos:', error);
+    }
   };
 
-
-
   const deleteProducto = async (id) => {
-    await axios.delete(`${endpoint}/inventario/${id}`);
-    window.location.reload();
+    try {
+      await axios.delete(`${endpoint}/producto/${id}`);
+      getAllProductosT();
+    } catch (error) {
+      console.error('Error al eliminar el producto:', error);
+    }
   };
 
   return (
@@ -36,7 +41,6 @@ const ShowProducts = () => {
       <table className='table table-striped'>
         <thead>
           <tr>
-            <th>Inventario</th>
             <th>ID Producto</th>
             <th>Nombre</th>
             <th>Cantidad</th>
@@ -44,18 +48,17 @@ const ShowProducts = () => {
           </tr>
         </thead>
         <tbody>
-          {inventario.map((inventario) => (
-            <tr key={inventario.ID_INVENTARIO_PRODUCTOS}>
-              <td>{inventario.ID_INVENTARIO_PRODUCTOS}</td>
-              <td>{inventario.ID_PRODUCTO}</td>
-              <td>{inventario.NOMBRE_PRODUCTO}</td>
-              <td>{inventario.CANTIDAD_INVENTARIO_PRODUCTOS}</td>
+          {productos.map((producto) => (
+            <tr key={producto.ID_PRODUCTO}>
+              <td>{producto.ID_PRODUCTO}</td>
+              <td>{producto.NOMBRE_PRODUCTO}</td>
+              <td>{producto.inventario_productos.length > 0 ? producto.inventario_productos[0].CANTIDAD_INVENTARIO_PRODUCTOS : 'Sin inventario'}</td>
               <td>
                 <div>
-                  <Link to={`/edit/${inventario.ID_INVENTARIO_PRODUCTOS}`} className='btn btn-warning'>
+                  <Link to={`/editProducto/${producto.ID_PRODUCTO}`} className='btn btn-warning mx-2'>
                     <VscEdit />
                   </Link>
-                  <button onClick={() => deleteProducto(inventario.ID_INVENTARIO_PRODUCTOS)} className='btn btn-danger'>
+                  <button onClick={() => deleteProducto(producto.ID_PRODUCTO)} className='btn btn-danger mx-2'>
                     <VscTrash />
                   </button>
                 </div>
@@ -69,4 +72,3 @@ const ShowProducts = () => {
 }
 
 export default ShowProducts;
-

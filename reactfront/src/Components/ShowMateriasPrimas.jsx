@@ -26,29 +26,29 @@ export const ShowMateriasPrimas = () => {
   return (
     <div>
         <div className='d-grip gap-2'>
-            <Link to="/createMateriasPrima" className='btn btn-success btn-lg mt-2 mb-2 text-white'>Create</Link>
+            <Link to="/createMateriasPrima" className='btn btn-success btn-lg mt-8 mb-3 text-white'>Create</Link>
         </div>
         <table className='table table-striped'>
             <thead className='bg-primary text-white'>
                 <tr>
-                    <th>ID Categoria</th>
+                    <th>ID Materia prima</th>
                     <th>ID Proveedor</th>
                     <th>Nombre</th>
                     <th>Detalles</th>
-                    <th>Precio</th>
+                    <th>Cantidad</th>
                     <th>Accion</th>
                 </tr>
             </thead>
             <tbody>
                 {materiasprimas.map( (materiaprima) => (
                     <tr key={materiaprima.ID_MATERIA_PRIMA}>
-                        <td>{materiaprima.ID_CATEGORIA_MP}</td>
+                        <td>{materiaprima.ID_MATERIA_PRIMA}</td>
                         <td>{materiaprima.ID_PROVEEDOR}</td>
                         <td>{materiaprima.NOMBRE_MATERI_PRIMA}</td>
                         <td>{materiaprima.DETALLES_MATERIA_PRIMA}</td>
-                        <td>{materiaprima.PRECIO_MATERIA_PRIMA}</td>
+                        <td>{materiaprima.inventarios_materias_primas.length > 0 ? materiaprima.inventarios_materias_primas[0].CANTIDAD_INVENTARIO_MP: 'Sin inventario'}</td>
                         <td>
-                            <Link to={`/edit/${materiaprima.ID_MATERIA_PRIMA}`} className='btn btn-warning'>Edit</Link>
+                            <Link to={`/editMateriasPrima/${materiaprima.ID_MATERIA_PRIMA}`} className='btn btn-warning'>Edit</Link>
                             <button onClick={()=>deleteMateriasPrimas(materiaprima.ID_MATERIA_PRIMA)} className='btn btn-danger'>Delete</button>
                         </td>
                     </tr>

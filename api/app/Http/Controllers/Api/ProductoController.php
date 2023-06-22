@@ -12,7 +12,7 @@ class ProductoController extends Controller {
     */
 
     public function index() {
-        $productos = Producto::with('inventario_productos')->get();
+        $productos = Producto::with( 'inventario_productos' )->get();
         return $productos;
     }
 
@@ -37,7 +37,7 @@ class ProductoController extends Controller {
     */
 
     public function show( $id ) {
-        $producto = Producto::find( $id );
+        $producto = Producto::with( 'inventario_productos' )->find( $id );
         return $producto;
     }
 
