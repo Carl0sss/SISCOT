@@ -41,6 +41,7 @@ const ShowVentas = () => {
             <th>Nombre persona</th>
             <th>Direccion cliente</th>
             <th>fecha</th>
+            <th>Accion</th>
           </tr>
         </thead>
         <tbody>

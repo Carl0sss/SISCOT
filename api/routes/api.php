@@ -10,6 +10,9 @@ use App\Http\Controllers\Api\VentasController;
 use App\Http\Controllers\Api\DetallesVentaController;
 use App\Http\Controllers\Api\PedidoController;
 use App\Http\Controllers\Api\InvMateriasPrimaController;
+use App\Http\Controllers\Api\TipoProductoController;
+use App\Http\Controllers\Api\ProveedoreController;
+use App\Http\Controllers\Api\CategoriaMateriasPrimaController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -29,6 +32,16 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
+});
+
+Route::controller(TipoProductoController::class)->group(function(){
+    Route::get('/tipoproducto','index');
+});
+Route::controller(ProveedoreController::class)->group(function(){
+    Route::get('/proveedor','index');
+});
+Route::controller(CategoriaMateriasPrimaController::class)->group(function(){
+    Route::get('/categoriamp','index');
 });
 
 Route::controller(VentasController::class)->group(function(){

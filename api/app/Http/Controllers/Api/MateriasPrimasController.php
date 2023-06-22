@@ -14,7 +14,6 @@ class MateriasPrimasController extends Controller {
 
     public function store( Request $request ) {
         $MateriasPrimas = new MateriasPrima();
-        $MateriasPrimas->ID_MATERIA_PRIMA = $request->ID_MATERIA_PRIMA;
         $MateriasPrimas->ID_CATEGORIA_MP = $request->ID_CATEGORIA_MP;
         $MateriasPrimas->ID_PROVEEDOR = $request->ID_PROVEEDOR;
         $MateriasPrimas->NOMBRE_MATERI_PRIMA = $request->NOMBRE_MATERI_PRIMA;

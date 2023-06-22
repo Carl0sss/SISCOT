@@ -23,7 +23,6 @@ class ProductoController extends Controller {
     public function store( Request $request ) {
 
         $producto = new Producto();
-        $producto->ID_PRODUCTO = $request->ID_PRODUCTO;
         $producto->ID_TIPO_PRODUCTO = $request->ID_TIPO_PRODUCTO;
         $producto->NOMBRE_PRODUCTO = $request->NOMBRE_PRODUCTO;
         $producto->DESCRIPCION_PRODUCTO = $request->DESCRIPCION_PRODUCTO;

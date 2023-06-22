@@ -32,41 +32,42 @@ const ShowProducts = () => {
 
   return (
     <div>
+      <h2>Gestión de productos</h2>
+      <hr />
       <div className='d-grid gap-2'>
-        <button className='btn btn-success btn-lg mt-8 mb-3'>
-          <VscAdd size={24} />
-          <Link to='/createProducto' className='btn-create text-white'> Ingresar un producto al inventario</Link>
-        </button>
-      </div>
-      <table className='table table-striped'>
-        <thead>
-          <tr>
-            <th>ID Producto</th>
-            <th>Nombre</th>
-            <th>Cantidad</th>
-            <th>Acciones</th>
-          </tr>
-        </thead>
-        <tbody>
-          {productos.map((producto) => (
-            <tr key={producto.ID_PRODUCTO}>
-              <td>{producto.ID_PRODUCTO}</td>
-              <td>{producto.NOMBRE_PRODUCTO}</td>
-              <td>{producto.inventario_productos.length > 0 ? producto.inventario_productos[0].CANTIDAD_INVENTARIO_PRODUCTOS : 'Sin inventario'}</td>
-              <td>
-                <div>
-                  <Link to={`/editProducto/${producto.ID_PRODUCTO}`} className='btn btn-warning mx-2'>
-                    <VscEdit />
-                  </Link>
-                  <button onClick={() => deleteProducto(producto.ID_PRODUCTO)} className='btn btn-danger mx-2'>
-                    <VscTrash />
-                  </button>
-                </div>
-              </td>
+        <Link to='/createProducto' className='btn btn-success btn-lg mt-8 mb-3 text-white'><VscAdd size={24} /> Ingresar un producto al inventario</Link>
+        <hr />
+
+        <table className='table table-hover'>
+          <thead>
+            <tr>
+              <th>ID Producto</th>
+              <th>Nombre</th>
+              <th>Cantidad</th>
+              <th>Acciones</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {productos.map((producto) => (
+              <tr key={producto.ID_PRODUCTO}>
+                <td>{producto.ID_PRODUCTO}</td>
+                <td>{producto.NOMBRE_PRODUCTO}</td>
+                <td>{producto.inventario_productos.length > 0 ? producto.inventario_productos[0].CANTIDAD_INVENTARIO_PRODUCTOS : 'Sin inventario'}</td>
+                <td>
+                  <div>
+                    <Link to={`/editProducto/${producto.ID_PRODUCTO}`} className='btn btn-warning mx-2'>
+                      <VscEdit />
+                    </Link>
+                    <button onClick={() => deleteProducto(producto.ID_PRODUCTO)} className='btn btn-danger mx-2'>
+                      <VscTrash />
+                    </button>
+                  </div>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 }
