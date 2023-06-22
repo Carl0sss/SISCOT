@@ -27,9 +27,9 @@ const [ventaData, setVentaData] = useState({
   TOTAL_VENTA: 0,
   SUBTOTAL_VENTA: 0,
   IVA_VENTA: 0,
-  NOMBRE_PERSONA: 0,
+  NOMBRE_PERSONA: '',
   DIRECCION_PERSONA: '',
-  FECHA_VENTA: ''
+  FECHA_VENTA: new Date()
 });
 
 /* Detalles venta object */
@@ -56,14 +56,19 @@ const [detalleData, setDetalleData] = useState({
 
   const handleAgregarDetalle = (event) => {
    event.preventDefault();
-    const subtotal = parseFloat(detalleData.PRECIO_UNITARIO) * parseInt(detalleData.CANTIDAD_PRODUCTO);
+    const subtotal = detalleData.PRECIO_UNITARIO * detalleData.CANTIDAD_PRODUCTO;
 
+     //creamos una copia del objetod detalle
+     const nuevosDetalles = [
+        ...ventaData.detalles,
+        { ...detalleData, SUBTOTAL_PRODUCTO: subtotal }
+      ];
           setVentaData({
               ...ventaData,
-              detalles: [...ventaData.detalles, { ...detalleData, SUBTOTAL_PRODUCTO: subtotal }],
+              detalles: nuevosDetalles,
               SUBTOTAL_VENTA: ventaData.SUBTOTAL_VENTA + subtotal,
               IVA_VENTA: (ventaData.SUBTOTAL_VENTA + subtotal) * 0.13,
-              TOTAL_VENTA: ventaData.SUBTOTAL_VENTA + (ventaData.SUBTOTAL_VENTA + subtotal) * 0.13,
+              TOTAL_VENTA: ventaData.SUBTOTAL_VENTA + (ventaData.SUBTOTAL_VENTA + subtotal) * 0.13 + subtotal,
           });
 
           setDetalleData({
@@ -101,7 +106,7 @@ const [detalleData, setDetalleData] = useState({
         await axios.post(endpoint, ventaData).then((response) => {
             console.log(response.data);
             // Realizar alguna acción después de enviar los datos
-            navigate('/');
+            navigate('/showVentas');
         }).catch((error) => {
             console.error(error);
             // Manejar el error
@@ -212,7 +217,7 @@ const [detalleData, setDetalleData] = useState({
                             <div className="col-8">
                                 <button type="submit" className="btn btn-primary">Guardar</button>
 
-                                <button className="btn btn-outline-secondary" href='/show'>Cancelar</button>
+                                <button type="button" className="btn btn-outline-secondary mx-2" onClick={() => navigate('/showVentas')}>Cancelar</button>
                             </div>
                         </div>
             </div>
@@ -252,7 +257,7 @@ const [detalleData, setDetalleData] = useState({
                             <label className="col-4 col-form-label">Cantidad</label>
                             <div className="col-8">
                                 <input
-                                    name='CANTIDAD_COTIZACION'
+                                    name='CANTIDAD_PRODUCTO'
                                     value={detalleData.CANTIDAD_PRODUCTO}
                                     onChange={handleDetalleInputChange}
                                     type='number'
