@@ -102,7 +102,7 @@ class VentasController extends Controller
      */
     public function destroy($id)
     {
-        $venta = Venta::destroy($id);
-        return $venta;
+        DetallesVenta::where('ID_VENTA', $id)->delete();
+        Venta::destroy($id);
     }
 }
