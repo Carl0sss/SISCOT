@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Models\Venta;
 use App\Models\DetallesVenta;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
 
 class VentasController extends Controller
 {
@@ -31,6 +33,7 @@ class VentasController extends Controller
             'DESCRIPCION_VENTA' => 'required',
             // Otros campos requeridos
         ]);*/
+        $fechaIngreso = Carbon::now();
         $venta1 = new Venta();
         $venta1->ID_CLIENTE = $request->input('ID_CLIENTE');
         $venta1->DESCRIPCION_VENTA = $request->input('DESCRIPCION_VENTA');
@@ -39,10 +42,11 @@ class VentasController extends Controller
         $venta1->IVA_VENTA = $request->input('IVA_VENTA');
         $venta1->NOMBRE_PERSONA = $request->input('NOMBRE_PERSONA');
         $venta1->DIRECCION_PERSONA = $request->input('DIRECCION_PERSONA');
+        $venta1->FECHA_VENTA = $fechaIngreso;
 
         $venta1->save();
         
-        $ventalast = Venta::orderBy('FECHA_VENTA', 'desc')->first();
+        $lastId = Venta::orderBy('FECHA_VENTA', 'desc')->first()->ID_VENTA;
         
         // Crear los detalles de cotización si se proporcionaron
         $detalles = $request->input('detalles');
@@ -50,10 +54,10 @@ class VentasController extends Controller
             foreach ($detalles as $detalle) {
                 // Crear una nueva instancia de Detallesventa
                 $detalleVenta = new DetallesVenta();
-                $detalleVenta->ID_VENTA = $ventalast->ID_VENTA;
-                $detalleVenta->ID_PRODUCTO = $detalles->ID_PRODUCTO['ID_PRODUCTO'];
-                $detalleVenta->CANTIDA_PRODUCTO = $detalles['CANTIDA_PRODUCTO'];
-                $detalleVenta->SUBTOTAL_PRODUCTO = $detalles['SUBTOTAL_PRODUCTO'];
+                $detalleVenta->ID_VENTA = $lastId;
+                $detalleVenta->ID_PRODUCTO = $detalle['ID_PRODUCTO'];
+                $detalleVenta->CANTIDA_PRODUCTO = $detalle['CANTIDAD_PRODUCTO'];
+                $detalleVenta->SUBTOTAL_PRODUCTO = $detalle['SUBTOTAL_PRODUCTO'];
                 // Asignar otros campos del detalle
                 
                 // Guardar el detalle 
@@ -61,7 +65,8 @@ class VentasController extends Controller
             }
         }
         
-        return response()->json(['message' => 'Cotización creada exitosamente']);
+        return response()->json(['message' => 'Cotización creada exitosamente' . $lastId]);
+
     }
 
     /**

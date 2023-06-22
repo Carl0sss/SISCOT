@@ -18,12 +18,17 @@ import EditProduct from "./components/EditProduct";
 import ShowMateriasPrimas from "./components/ShowMateriasPrimas";
 import ShowPedidos from "./components/ShowPedidos";
 import ShowProduct from "./components/ShowProduct";
+import Dashboard from "./components/Dashboard"
 
 const router = createBrowserRouter([
     {
         path: '/',
         element: <DefaultLayout />,
         children: [
+            {
+                path: '/',
+                element: <Dashboard />,
+            },
             {
                 path: '/ventas',
                 element: <VentasMenu />,

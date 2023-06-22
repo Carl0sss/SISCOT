@@ -197,7 +197,7 @@ const CreateCotizacion = () => {
                                 className='form-select'>
                                 <option selected>-- Seleccione un Producto --</option>
                                 {productos.map((producto) => (
-                                    <option value={producto.ID_PRODUCTO}>{producto.NOMBRE_PRODUCTO}</option>
+                                    <option value={producto.ID_PRODUCTO}>{producto.NOMBRE_PRODUCTO} - {producto.PRECIO_UNITARIO}</option>
                                 ))}
                             </select>
                             <small className="form-text text-muted">Seleccióne un producto</small>
