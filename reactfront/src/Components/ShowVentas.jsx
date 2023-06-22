@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import { VscEdit } from "react-icons/vsc";
 import { VscTrash } from "react-icons/vsc";
+import { VscAdd } from "react-icons/vsc";
 
 import { Link } from 'react-router-dom'
 
@@ -27,42 +28,41 @@ const ShowVentas = () => {
 
   return (
     <div>
+      <h2>Gestión de Ventas</h2>
+      <hr />
       <div className='d-grid gap-2'>
-        <Link to='/createVenta' className='btn btn-success btn-lg mt-2 mb-2 text-white'>Crear</Link>
-      </div>
-      <table className='table table-striped'>
-        <thead className='bg-primary text white'>
-          <tr>
-            <th>Cliente</th>
-            <th>Descripcion</th>
-            <th>Total venta</th>
-            <th>Subtotal venta</th>
-            <th>Iva ventas</th>
-            <th>Nombre persona</th>
-            <th>Direccion cliente</th>
-            <th>fecha</th>
-            <th>Accion</th>
-          </tr>
-        </thead>
-        <tbody>
-          {ventas.map((venta) => (
-            <tr key={venta.ID_VENTA}>
-              <td>{venta.ID_CLIENTE}</td>
-              <td>{venta.DESCRIPCION_VENTA}</td>
-              <td>{venta.TOTAL_VENTA}</td>
-              <td>{venta.SUBTOTAL_VENTA}</td>
-              <td>{venta.IVA_VENTA}</td>
-              <td>{venta.NOMBRE_PERSONA}</td>
-              <td>{venta.DIRECCION_PERSONA}</td>
-              <td>{venta.FECHA_VENTA}</td>
-              <td>
-                <Link to={`/editVenta/${venta.ID_VENTA}`} className='btn btn-warning' ><VscEdit />Editar</Link>
-                <a className='btn btn-danger' onClick={() => deleteVenta(venta.ID_VENTA)}><VscTrash />Delete</a>
-              </td>
+        <Link to='/createVenta' className='btn btn-success btn-lg mt-8 mb-3'><VscAdd size={24} /> Ingresar venta</Link>
+        <hr />
+        <table className='table table-hover'>
+          <thead>
+            <tr>
+              <th>Cliente</th>
+              <th>Descripcion</th>
+              <th>Total venta</th>
+              <th>Nombre persona</th>
+              <th>Direccion cliente</th>
+              <th>fecha</th>
+              <th>Accion</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {ventas.map((venta) => (
+              <tr key={venta.ID_VENTA}>
+                <td>{venta.ID_CLIENTE}</td>
+                <td>{venta.DESCRIPCION_VENTA}</td>
+                <td>{venta.TOTAL_VENTA}</td>
+                <td>{venta.NOMBRE_PERSONA}</td>
+                <td>{venta.DIRECCION_PERSONA}</td>
+                <td>{venta.FECHA_VENTA}</td>
+                <td>
+                  <Link to={`/editVenta/${venta.ID_VENTA}`} className='btn btn-warning mx-2' ><VscEdit />Editar</Link>
+                  <a className='btn btn-danger mx-2' onClick={() => deleteVenta(venta.ID_VENTA)}><VscTrash />Delete</a>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     </div>
   )
 }

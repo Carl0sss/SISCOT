@@ -52,8 +52,8 @@ const ShowCotizaciones = () => {
                                 <td>{cotizacion.FECHA_INGRESOS_COTIZACION}</td>
                                 <td>{cotizacion.TOTAL_COTIZACION}</td>
                                 <td>
-                                    <Link to={`/edit/${cotizacion.ID_COTIZACION}`} className='btn btn-warning mx-2'><VscEdit />Editar</Link>
-                                    <button className='btn btn-danger mx-2' onClick={() => deleteCotizacion(cotizacion.ID_COTIZACION)}><VscTrash />Eliminar</button>
+                                    <Link to={`/edit/${cotizacion.ID_COTIZACION}`} className='btn btn-warning mx-2'><VscEdit /> Editar</Link>
+                                    <button className='btn btn-danger mx-2' onClick={() => deleteCotizacion(cotizacion.ID_COTIZACION)}><VscTrash /> Eliminar</button>
                                 </td>
                             </tr>
                         ))}
