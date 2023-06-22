@@ -5,6 +5,8 @@ import { VscEdit } from "react-icons/vsc";
 import { VscTrash } from "react-icons/vsc";
 import { VscAdd } from "react-icons/vsc";
 
+import { format } from 'date-fns';
+
 const endpoint = 'http://127.0.0.1:8000/api'
 
 const ShowCotizaciones = () => {
@@ -50,6 +52,7 @@ const ShowCotizaciones = () => {
                                 <td>{cotizacion.ID_CLIENTE}</td>
                                 <td>{cotizacion.DESCRIPCION_COTIZACIOIN}</td>
                                 <td>{cotizacion.FECHA_INGRESOS_COTIZACION}</td>
+                                {/* <td>{format(new Date(cotizacion.FECHA_INGRESOS_COTIZACION), 'yyyy-MM-dd')}</td> */}
                                 <td>{cotizacion.TOTAL_COTIZACION}</td>
                                 <td>
                                     <Link to={`/edit/${cotizacion.ID_COTIZACION}`} className='btn btn-warning mx-2'><VscEdit /> Editar</Link>
