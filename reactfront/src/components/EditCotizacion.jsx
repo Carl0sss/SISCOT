@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import { useNavigate, useParams } from 'react-router-dom'
+import { VscEdit } from "react-icons/vsc";
+import { VscTrash } from "react-icons/vsc";
 
 const endpoint = 'http://127.0.0.1:8000/api/cotizacion/'
 const endpoint2 = 'http://127.0.0.1:8000/api'
@@ -9,15 +11,7 @@ const EditCotizacion = () => {
 
     const [clientes, setClientes] = useState([]);
     const [productos, setProductos] = useState([]);
-    const [detalleData, setDetalleCotizacion] = useState(
-        {
-            ID_PRODUCTO: '',
-            ESPECIFICACIONES_COTIZACION: '',
-            CANTIDAD_COTIZACION: 0,
-            PRECIO_UNITARIO: 0,
-            SUBTOTA_COTIZACION: 0
-        }
-    );
+    const [detalleData, setDetalleCotizacion] = useState([]);
 
     const [ID_CLIENTE, setCliente] = useState('');
     const [DESCRIPCION_COTIZACIOIN, setDescripcion] = useState('');
@@ -61,8 +55,8 @@ const EditCotizacion = () => {
 
     }
 
-    const deleteDetalle = async (idDetalle) => {
-        await axios.delete(`${endpoint}/detalleCotizacion/${idDetalle}`);
+    const deleteDetalle = async (id) => {
+        await axios.delete(`${endpoint2}/detalleCotizacion/${id}`);
         getAllDetalles();
     };
 
@@ -147,6 +141,7 @@ const EditCotizacion = () => {
                                 onChange={(e) => setTotal(e.target.value)}
                                 type='number'
                                 className='form-control'
+                                readOnly
                             />
                             <small className="form-text text-muted">Total</small>
                         </div>
@@ -157,6 +152,7 @@ const EditCotizacion = () => {
                                 onChange={(e) => setSubtotal(e.target.value)}
                                 type='number'
                                 className='form-control'
+                                readOnly
                             />
                             <small className="form-text text-muted">Sub Total</small>
                         </div>
@@ -167,6 +163,7 @@ const EditCotizacion = () => {
                                 onChange={(e) => setIva(e.target.value)}
                                 type='number'
                                 className='form-control'
+                                readOnly
                             />
                             <small className="form-text text-muted">IVA</small>
                         </div>
@@ -176,6 +173,38 @@ const EditCotizacion = () => {
                         <button type="button" className="btn btn-outline-secondary mx-2" onClick={() => navigate('/show')}>Cancelar</button>
                     </div>
                 </form>
+            </div>
+            <hr />
+            <h6>Resumen detalles cotización</h6>
+            <div className="container">
+                <table className="table mt-3">
+                    <thead>
+                        <tr>
+                            <th>Codigo</th>
+                            <th>Especificaciones</th>
+                            <th>Cantidad</th>
+                            <th>Precio</th>
+                            <th>Sub total</th>
+                            {/* <th>Acciones</th> */}
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {detalleData
+                            .filter(detalle => detalle.ID_COTIZACION === id)
+                            .map((detalle, index) => (
+                                <tr key={index}>
+                                    <td>{detalle.ID_PRODUCTO}</td>
+                                    <td>{detalle.ESPECIFICACIONES_COTIZACION}</td>
+                                    <td>{detalle.CANTIDAD_COTIZACION}</td>
+                                    <td>{detalle.PRESIO_UNITARIO_COTIZACION}</td>
+                                    <td>{detalle.SUBTOTA_COTIZACION}</td>
+                                    {/* <td>
+                                        <button className='btn btn-danger mx-2 btn-sm"' onClick={() => deleteDetalle(detalle.ID_DETALLE_COTIZACION)}><VscTrash />Eliminar</button>
+                                    </td> */}
+                                </tr>
+                            ))}
+                    </tbody>
+                </table>
             </div>
         </div>
     )
