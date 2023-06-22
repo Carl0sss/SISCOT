@@ -50,7 +50,7 @@ const ShowPedidos = () => {
                             <td> {pedido.FECHA_ENTREGA_PEDIDO} </td>
 
                             <td>
-                                <Link to={`/edit/${pedido.ID_PEDIDO}`} className='btn btn-warning'>Edit</Link>
+                                <Link to={`/editPedido/${pedido.ID_PEDIDO}`} className='btn btn-warning'>Edit</Link>
                                 <button onClick={() => deletePedido(pedido.ID_PEDIDO)} className='btn btn-danger'>Delete</button>
                             </td>
 
