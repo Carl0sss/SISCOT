@@ -29,7 +29,7 @@ const ShowPedidos = () => {
             <h2>Gestión de pedido</h2>
             <hr />
             <div className='d-grid gap-2'>
-                <Link to="/createPedido" className='btn btn-success btn-lg mt-8 mb-3'>Registrar pedido</Link>
+                <Link to="/createPedido" className='btn btn-success btn-lg mt-8 mb-3'><VscAdd size={24} />Registrar pedido</Link>
                 <hr />
                 <table className='table table-hover'>
                     <thead>

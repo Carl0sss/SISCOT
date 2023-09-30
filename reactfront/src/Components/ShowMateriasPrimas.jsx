@@ -41,6 +41,7 @@ export const ShowMateriasPrimas = () => {
                             <th>Nombre</th>
                             <th>Detalles</th>
                             <th>Cantidad</th>
+                            <th>PRECIO</th>
                             <th>Accion</th>
                         </tr>
                     </thead>
@@ -52,6 +53,7 @@ export const ShowMateriasPrimas = () => {
                                 <td>{materiaprima.NOMBRE_MATERI_PRIMA}</td>
                                 <td>{materiaprima.DETALLES_MATERIA_PRIMA}</td>
                                 <td>{materiaprima.inventarios_materias_primas.length > 0 ? materiaprima.inventarios_materias_primas[0].CANTIDAD_INVENTARIO_MP : 'Sin inventario'}</td>
+                                <td>${materiaprima.PRECIO_MATERIA_PRIMA}</td>
                                 <td>
                                     <Link to={`/editMateriasPrima/${materiaprima.ID_MATERIA_PRIMA}`} className='btn btn-warning mx-2'><VscEdit /></Link>
                                     <button onClick={() => deleteMateriasPrimas(materiaprima.ID_MATERIA_PRIMA)} className='btn btn-danger mx-2'><VscTrash /></button>

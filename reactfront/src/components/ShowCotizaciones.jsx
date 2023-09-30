@@ -5,21 +5,21 @@ import { VscEdit } from "react-icons/vsc";
 import { VscTrash } from "react-icons/vsc";
 import { VscAdd } from "react-icons/vsc";
 import { format } from 'date-fns';
-/* import toast, { Toaster } from 'react-hot-toast'; */
+import toast, { Toaster } from 'react-hot-toast';
 
 
 const endpoint = 'http://127.0.0.1:8000/api'
 
 const ShowCotizaciones = () => {
 
-    /* const notify = () => toast.success('Cotización eliminada con exito', {
+    const notify = () => toast.success('Cotización eliminada con exito', {
         position: 'top-right',
         style: {
             background: '#FA3834',
             minWidth: '300px',
         }
     }
-    ); */
+    );
 
     const [cotizaciones, setCotizaciones] = useState([]);
 
@@ -34,13 +34,13 @@ const ShowCotizaciones = () => {
 
     const deleteCotizacion = async (id) => {
         await axios.delete(`${endpoint}/cotizacion/${id}`);
-        /* notify(); */
+        notify();
         getAllCotizaciones();
     };
 
     return (
         <div className='bg-white'>
-            {/* <Toaster /> */}
+            <Toaster />
             <h2>Gestión de cotizaciones</h2>
             <hr />
             <div className='d-grid gap-2'>
@@ -63,8 +63,8 @@ const ShowCotizaciones = () => {
                                 <td>{cotizacion.ID_COTIZACION}</td>
                                 <td>{cotizacion.ID_CLIENTE}</td>
                                 <td>{cotizacion.DESCRIPCION_COTIZACIOIN}</td>
-                                <td>{cotizacion.FECHA_INGRESOS_COTIZACION}</td>
-                                {/* <td>{format(new Date(cotizacion.FECHA_INGRESOS_COTIZACION), 'yyyy-MM-dd')}</td> */}
+                                {/* <td>{cotizacion.FECHA_INGRESOS_COTIZACION}</td> */}
+                                <td>{format(new Date(cotizacion.FECHA_INGRESOS_COTIZACION), 'dd-MM-yyyy')}</td>
                                 <td>{cotizacion.TOTAL_COTIZACION}</td>
                                 <td>
                                     <Link to={`/edit/${cotizacion.ID_COTIZACION}`} className='btn btn-warning mx-2'><VscEdit /> Editar</Link>
