@@ -24,6 +24,7 @@ use Illuminate\Database\Eloquent\Model;
  * 
  * @property Cliente|null $cliente
  * @property Collection|DetallePedido[] $detalle_pedidos
+ * @property Collection|ProcesosPedido[] $procesos_pedidos
  *
  * @package App\Models
  */
@@ -61,5 +62,9 @@ class Pedido extends Model
 	{
 		return $this->hasMany(DetallePedido::class, 'ID_PEDIDO');
 	}
-}
 
+	public function procesos_pedidos()
+	{
+		return $this->hasMany(ProcesosPedido::class, 'ID_PEDIDO');
+	}
+}

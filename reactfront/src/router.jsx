@@ -18,7 +18,9 @@ import EditProduct from "./components/EditProduct";
 import ShowMateriasPrimas from "./components/ShowMateriasPrimas";
 import ShowPedidos from "./components/ShowPedidos";
 import ShowProduct from "./components/ShowProduct";
-import Dashboard from "./components/Dashboard"
+import Dashboard from "./components/Dashboard";
+import ShowProcesoPedidos from "./components/ShowProcesoPedidos";
+import DetailsProcesoPedido from "./components/DetailsProcesoPedido";
 
 const router = createBrowserRouter([
     {
@@ -96,6 +98,14 @@ const router = createBrowserRouter([
             {
                 path: '/createProducto',
                 element: <CreateProduct />
+            },
+            {
+                path: '/showProcesoPedidos',
+                element: <ShowProcesoPedidos />
+            },
+            {
+                path: '/DetailsProcesoPedido/:id',
+                element: <DetailsProcesoPedido />
             }
         ]
     },
