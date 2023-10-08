@@ -13,10 +13,11 @@ use Illuminate\Database\Eloquent\Model;
  * Class LineaProduccion
  * 
  * @property int $ID_LINEA_PRODUCCION
- * @property string|null $NOMBRE_LINEA
+ * @property string|null $NOMBRE_LINEA_PRODUCCION
  * @property string|null $DESCRIPCION_PASOS
+ * @property int|null $ORDEN_PRODUCCION
  * 
- * @property Collection|ProcesosPedido[] $procesos_pedidos
+ * @property Collection|ProcesoPedido[] $proceso_pedidos
  *
  * @package App\Models
  */
@@ -26,13 +27,18 @@ class LineaProduccion extends Model
 	protected $primaryKey = 'ID_LINEA_PRODUCCION';
 	public $timestamps = false;
 
-	protected $fillable = [
-		'NOMBRE_LINEA',
-		'DESCRIPCION_PASOS'
+	protected $casts = [
+		'ORDEN_PRODUCCION' => 'int'
 	];
 
-	public function procesos_pedidos()
+	protected $fillable = [
+		'NOMBRE_LINEA_PRODUCCION',
+		'DESCRIPCION_PASOS',
+		'ORDEN_PRODUCCION'
+	];
+
+	public function proceso_pedidos()
 	{
-		return $this->hasMany(ProcesosPedido::class, 'ID_LINEA_PRODUCCION');
+		return $this->hasMany(ProcesoPedido::class, 'ID_LINEA_PRODUCCION');
 	}
 }

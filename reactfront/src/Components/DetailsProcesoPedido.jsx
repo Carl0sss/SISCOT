@@ -7,19 +7,35 @@ const endpoint = 'http://127.0.0.1:8000/api'
 
 const DetailsProcesoPedido = () => {
 
+    const navigate = useNavigate();
     const { id } = useParams();
 
     const [pedido, setPedido] = useState({})
+    const [productos, setProductos] = useState([]);
+    /*     const [detallePedido, setDetallePedido] = useState([]); */
+
 
     useEffect(() => {
-        getPedido()
+        getPedido();
+        getAllProductos();
+        /* getAllDetalles(); */
     }, [])
 
+    /* Get Obejcts */
+    const getAllProductos = async () => {
+        const response = await axios.get(`${endpoint}/productos`);
+        setProductos(response.data);
+
+    }
     const getPedido = async () => {
         const response = await axios.get(`${endpoint}/pedido/${id}`)
         setPedido(response.data)
         console.log(response.data)
     }
+    /*    const getAllDetalles = async () => {
+           const response = await axios.get(`${endpoint}/detallePedido`);
+           setDetallePedido(response.data);
+       } */
 
     /* FUNCTIONS */
     // Formatear las fechas en el formato deseado 'dd-MM-yyyy'
@@ -43,19 +59,54 @@ const DetailsProcesoPedido = () => {
 
 
     return (
-        <div>
-            <h2>Seguimiento proceso pedido Nº {pedido.ID_PEDIDO}</h2>
-            <h3>Descripción: {pedido.DESCRIPCION_PEDIDO}</h3>
-            <h3>Fecha de Pedido: {formatDate(pedido.FECHA_PEDIDO)}</h3>
-            <h3>Fecha de Entrega: {formatDate(pedido.FECHA_ENTREGA_PEDIDO)}</h3>
-            <h3>Estado: <span className='badge text-bg-danger'>Estado</span></h3>
-            <h3>Linea: </h3>
-            <div className='card' style={cardStyle}>
-                <div className='card-body' >
-                    <h4>Linea numero cuatro</h4>
+        <div className="container mt-5">
+            <h2 className='mb-4'>Seguimiento proceso pedido Nº {pedido.ID_PEDIDO}</h2>
+            <hr />
+            <div className='row'>
+                <div className='col-md-6'>
+                    <p>Descripción: {pedido.DESCRIPCION_PEDIDO}</p>
+                    <p>Fecha de Pedido: {formatDate(pedido.FECHA_PEDIDO)}</p>
+                    <p>Fecha de Entrega: {formatDate(pedido.FECHA_ENTREGA_PEDIDO)}</p>
+                    <p>Estado: <span className='badge text-bg-danger'>No Iniciado</span></p>
+
+                </div>
+                <div className='col-md-6'>
+                    <p>
+                        <button className='btn btn-outline-primary'>Inciar Producción</button>
+                    </p>
+                    <p>
+                        <button className='btn btn-outline-warning'>Avanzar Linea</button></p>
+                    <p>
+                        <button className='btn btn-outline-info'>Revisar</button>
+                    </p>
+                    <p>
+                        <button className='btn btn-outline-success'>Finalizar</button>
+                    </p>
+
+
                 </div>
             </div>
+            <hr />
+            <div className='row'>
+                <div className='col md-6'>
+                    <p>Estandares:</p>
+                    <p>Linea: </p>
+                    <div className='card' style={cardStyle}>
+                        <div className='card-body' >
+                            <p>Linea numero cuatro</p>
+                        </div>
+                    </div>
+                </div>
+                <div className='col md-6'>
+                    <p>Detalles: </p>
 
+                </div>
+
+            </div>
+            <hr />
+            <div className='row'>
+                <button className='btn btn-secondary mx-2' onClick={() => navigate('/showProcesoPedidos')}>Regresar</button>
+            </div>
         </div>
     )
 }

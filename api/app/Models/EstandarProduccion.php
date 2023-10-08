@@ -10,20 +10,20 @@ use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * Class EstandaresProduccion
+ * Class EstandarProduccion
  * 
  * @property int $ID_ESTANDAR_PRODUCCION
  * @property string|null $DESCRIPCION_ESTANDAR_PRODUCCION
  * @property int|null $TIEMPO_PRODUCCION
  * @property string|null $CRITERIO_EFICIENCIA
  * 
- * @property Collection|ProcesosPedido[] $procesos_pedidos
+ * @property Collection|EstandaresPedido[] $estandares_pedidos
  *
  * @package App\Models
  */
-class EstandaresProduccion extends Model
+class EstandarProduccion extends Model
 {
-	protected $table = 'estandares_produccion';
+	protected $table = 'estandar_produccion';
 	protected $primaryKey = 'ID_ESTANDAR_PRODUCCION';
 	public $timestamps = false;
 
@@ -37,8 +37,8 @@ class EstandaresProduccion extends Model
 		'CRITERIO_EFICIENCIA'
 	];
 
-	public function procesos_pedidos()
+	public function estandares_pedidos()
 	{
-		return $this->hasMany(ProcesosPedido::class, 'ID_ESTANDAR_PRODUCCION');
+		return $this->hasMany(EstandaresPedido::class, 'ID_ESTANDAR_PRODUCCION');
 	}
 }

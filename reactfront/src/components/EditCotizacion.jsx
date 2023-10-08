@@ -198,9 +198,6 @@ const EditCotizacion = () => {
                                     <td>{detalle.CANTIDAD_COTIZACION}</td>
                                     <td>{detalle.PRESIO_UNITARIO_COTIZACION}</td>
                                     <td>{detalle.SUBTOTA_COTIZACION}</td>
-                                    {/* <td>
-                                        <button className='btn btn-danger mx-2 btn-sm"' onClick={() => deleteDetalle(detalle.ID_DETALLE_COTIZACION)}><VscTrash />Eliminar</button>
-                                    </td> */}
                                 </tr>
                             ))}
                     </tbody>

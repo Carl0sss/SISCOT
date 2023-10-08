@@ -27,5 +27,7 @@ Confirguración de reactfront
 ```php
 npm install axios bootstrap react-router-dom localforage match-sorter sort-by
 ```
-## Overview
-...
+## Comandos varios
+```PHP
+php artisan make:controller Api/nombre --model=nombre --api
+```

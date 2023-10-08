@@ -10,7 +10,7 @@ use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * Class EstandaresCalidad
+ * Class EstandarCalidad
  * 
  * @property int $ID_ESTANDAR_CALIDAD
  * @property string|null $DESCRIPCION_ESTANDAR_CALIDAD
@@ -18,13 +18,13 @@ use Illuminate\Database\Eloquent\Model;
  * @property int|null $TOLERANCIA_MAXIMA
  * @property string|null $CRITERIO_APROBACION
  * 
- * @property Collection|ProcesosPedido[] $procesos_pedidos
+ * @property Collection|EstandaresPedido[] $estandares_pedidos
  *
  * @package App\Models
  */
-class EstandaresCalidad extends Model
+class EstandarCalidad extends Model
 {
-	protected $table = 'estandares_calidad';
+	protected $table = 'estandar_calidad';
 	protected $primaryKey = 'ID_ESTANDAR_CALIDAD';
 	public $timestamps = false;
 
@@ -40,8 +40,8 @@ class EstandaresCalidad extends Model
 		'CRITERIO_APROBACION'
 	];
 
-	public function procesos_pedidos()
+	public function estandares_pedidos()
 	{
-		return $this->hasMany(ProcesosPedido::class, 'ID_ESTANDAR_CALIDAD');
+		return $this->hasMany(EstandaresPedido::class, 'ID_ESTANDAR_CALIDAD');
 	}
 }
