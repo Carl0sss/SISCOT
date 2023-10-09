@@ -59,6 +59,7 @@ Route::controller(PedidoController::class)->group(function(){
     Route::post('/pedido','store');
     Route::get('/pedido/{id}','show');
     Route::put('/pedido/{id}','update');
+    Route::put('/pedidoUpdateState/{id}','updateState');
     Route::delete('/pedido/{id}','destroy');
 });
 

@@ -10,26 +10,30 @@ use App\Models\DetallePedido;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
 
-class PedidoController extends Controller {
+class PedidoController extends Controller
+{
     /**
-    * Display a listing of the resource.
-    */
+     * Display a listing of the resource.
+     */
 
-    public function index() {
-        $pedidos = Pedido::all();
+    public function index()
+    {
+        $pedidos = Pedido::with('estado_pedido')->get();
         return $pedidos;
     }
 
     /**
-    * Store a newly created resource in storage.
-    */
+     * Store a newly created resource in storage.
+     */
 
-    public function store( Request $request ) {
+    public function store(Request $request)
+    {
         // Create Cotizacione instance
         $fechaIngreso = Carbon::now();
         // Obtiene la fecha y hora actual
         $pedido = new Pedido();
         $pedido->ID_CLIENTE = $request->ID_CLIENTE;
+        $pedido->ID_ESTADO_PEDIDO = 1;
         $pedido->DESCRIPCION_PEDIDO = $request->DESCRIPCION_PEDIDO;
         $pedido->TOTAL_PEDIDO = $request->TOTAL_PEDIDO;
         $pedido->SUBTOTAL_PEDIDO = $request->SUBTOTAL_PEDIDO;
@@ -40,18 +44,18 @@ class PedidoController extends Controller {
         $pedido->save();
 
         // Getting the last modified id by date
-        $lastId = DB::table( 'pedidos' )->orderBy( 'FECHA_PEDIDO', 'desc' )->value( 'ID_PEDIDO' );
+        $lastId = DB::table('pedidos')->orderBy('FECHA_PEDIDO', 'desc')->value('ID_PEDIDO');
         // Create detalles cotizaion
-        $detalles = $request->input( 'detalles' );
-        if ( $detalles ) {
-            foreach ( $detalles as $detalle ) {
+        $detalles = $request->input('detalles');
+        if ($detalles) {
+            foreach ($detalles as $detalle) {
                 $detallepedido = new DetallePedido();
                 $detallepedido->ID_PEDIDO = $lastId;
-                $detallepedido->ID_PRODUCTO = $detalle[ 'ID_PRODUCTO' ];
-                $detallepedido->ESPECIFICACIONES_PEDIDO = $detalle[ 'ESPECIFICACIONES_PEDIDO' ];
-                $detallepedido->PRESIO_UNITARIO_PEDIDO = $detalle[ 'PRECIO_UNITARIO' ];
-                $detallepedido->CANTIDAD_PEDIDO = $detalle[ 'CANTIDAD' ];
-                $detallepedido->SUBTOTAL_DETALLE_PEDIDO = $detalle[ 'SUBTOTA_PRODUCTO' ];
+                $detallepedido->ID_PRODUCTO = $detalle['ID_PRODUCTO'];
+                $detallepedido->ESPECIFICACIONES_PEDIDO = $detalle['ESPECIFICACIONES_PEDIDO'];
+                $detallepedido->PRESIO_UNITARIO_PEDIDO = $detalle['PRECIO_UNITARIO'];
+                $detallepedido->CANTIDAD_PEDIDO = $detalle['CANTIDAD'];
+                $detallepedido->SUBTOTAL_DETALLE_PEDIDO = $detalle['SUBTOTA_PRODUCTO'];
 
                 // Guardar el detalle de cotización en la base de datos
                 $detallepedido->save();
@@ -60,24 +64,26 @@ class PedidoController extends Controller {
 
         /* return response()->json( [ 'message' => 'Cotización creada exitosamente' ] );
         */
-        return response()->json( [ 'message' => 'Pedido creado exitosamente', 'id' => $lastId ] );
+        return response()->json(['message' => 'Pedido creado exitosamente', 'id' => $lastId]);
     }
 
     /**
-    * Display the specified resource.
-    */
+     * Display the specified resource.
+     */
 
-    public function show( $id ) {
-        $pedido = Pedido::find( $id );
+    public function show($id)
+    {
+        $pedido = Pedido::with('estado_pedido')->find($id);
         return $pedido;
     }
 
     /**
-    * Update the specified resource in storage.
-    */
+     * Update the specified resource in storage.
+     */
 
-    public function update( Request $request, $id ) {
-        $pedido = Pedido::findOrFail( $id );
+    public function update(Request $request, $id)
+    {
+        $pedido = Pedido::findOrFail($id);
         $pedido->ID_CLIENTE = $request->ID_CLiente;
         $pedido->DESCRIPCION_PEDIDO = $request->DESCRIPCION_PEDIDO;
         $pedido->TOTAL_PEDIDO = $request->TOTAL_PEDIDO;
@@ -90,12 +96,21 @@ class PedidoController extends Controller {
         return $pedido;
     }
 
-    /**
-    * Remove the specified resource from storage.
-    */
+    public function updateState(Request $request, $id)
+    {
+        $pedido = Pedido::findOrFail($id);
+        $pedido->ID_ESTADO_PEDIDO = $request->ID_ESTADO_PEDIDO;
+        $pedido->save();
+        return $pedido;
+    }
 
-    public function destroy( $id ) {
-        DetallePedido::where( 'ID_PEDIDO', $id )->delete();
-        Pedido::destroy( $id );
+    /**
+     * Remove the specified resource from storage.
+     */
+
+    public function destroy($id)
+    {
+        DetallePedido::where('ID_PEDIDO', $id)->delete();
+        Pedido::destroy($id);
     }
 }

@@ -7,13 +7,13 @@ const endpoint = 'http://127.0.0.1:8000/api'
 
 const DetailsProcesoPedido = () => {
 
+
     const navigate = useNavigate();
     const { id } = useParams();
 
-    const [pedido, setPedido] = useState({})
+    const [pedido, setPedido] = useState([])
     const [productos, setProductos] = useState([]);
     /*     const [detallePedido, setDetallePedido] = useState([]); */
-
 
     useEffect(() => {
         getPedido();
@@ -56,6 +56,26 @@ const DetailsProcesoPedido = () => {
     const cardStyle = {
         width: '18rem',
     };
+    /* Change the color of badges */
+    function getBadgeClass(idEstadoPedido) {
+        switch (idEstadoPedido) {
+            case 1:
+                return 'text-bg-danger';
+            case 2:
+                return 'text-bg-warning';
+            case 3:
+                return 'text-bg-secondary';
+            case 4:
+                return 'text-bg-info';
+            case 5:
+                return 'text-bg-primary';
+            case 6:
+                return 'text-bg-success';
+            default:
+                // Si el valor no coincide con ninguno de los casos anteriores, puedes proporcionar una clase predeterminada.
+                return 'text-bg-default';
+        }
+    }
 
 
     return (
@@ -67,7 +87,9 @@ const DetailsProcesoPedido = () => {
                     <p>Descripción: {pedido.DESCRIPCION_PEDIDO}</p>
                     <p>Fecha de Pedido: {formatDate(pedido.FECHA_PEDIDO)}</p>
                     <p>Fecha de Entrega: {formatDate(pedido.FECHA_ENTREGA_PEDIDO)}</p>
-                    <p>Estado: <span className='badge text-bg-danger'>No Iniciado</span></p>
+                    <p>Estado: <span className={`badge ${getBadgeClass(pedido.ID_ESTADO_PEDIDO)}`}>
+                        {pedido.estado_pedido ? pedido.estado_pedido.NOMBRE_ESTADO : 'Estado no definido'}
+                    </span></p>
 
                 </div>
                 <div className='col-md-6'>

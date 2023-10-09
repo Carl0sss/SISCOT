@@ -21,6 +21,28 @@ const ShowProcesoPedidos = () => {
         //console.log(response.data)
     }
 
+    /* FUNCTIONS */
+    /* Change the color of badges */
+    function getBadgeClass(idEstadoPedido) {
+        switch (idEstadoPedido) {
+            case 1:
+                return 'text-bg-danger';
+            case 2:
+                return 'text-bg-warning';
+            case 3:
+                return 'text-bg-secondary';
+            case 4:
+                return 'text-bg-info';
+            case 5:
+                return 'text-bg-primary';
+            case 6:
+                return 'text-bg-success';
+            default:
+                // Si el valor no coincide con ninguno de los casos anteriores, puedes proporcionar una clase predeterminada.
+                return 'text-bg-default';
+        }
+    }
+
     return (
         <div>
             <h2>Seguimiento estado de pedidos en curso
@@ -46,7 +68,13 @@ const ShowProcesoPedidos = () => {
                                 <td> {pedido.DESCRIPCION_PEDIDO} </td>
                                 <td> {format(new Date(pedido.FECHA_PEDIDO), 'dd-MM-yyyy')} </td>
                                 <td> {format(new Date(pedido.FECHA_ENTREGA_PEDIDO), 'dd-MM-yyyy')} </td>
-                                <td><h5><span className='badge text-bg-danger'>Estado</span></h5></td>
+                                <td>
+                                    <h5>
+                                        <span className={`badge ${getBadgeClass(pedido.ID_ESTADO_PEDIDO)}`}>
+                                            {pedido.estado_pedido.NOMBRE_ESTADO}
+                                        </span>
+                                    </h5>
+                                </td>
                                 <td>Linea</td>
                                 <td>
                                     <Link to={`/DetailsProcesoPedido/${pedido.ID_PEDIDO}`} className='btn btn-primary mx-2'><VscEye /> Ver</Link>
