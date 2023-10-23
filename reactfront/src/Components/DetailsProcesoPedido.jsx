@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import { useNavigate, useParams } from 'react-router-dom'
-import { format } from 'date-fns';
+/* import { format } from 'date-fns'; */
 
 const endpoint = 'http://127.0.0.1:8000/api'
 
@@ -12,24 +12,32 @@ const DetailsProcesoPedido = () => {
     const { id } = useParams();
 
     const [pedido, setPedido] = useState([])
-    const [productos, setProductos] = useState([]);
+    /*     const [productos, setProductos] = useState([]); */
+    const [proceso, setProceso] = useState([])
     /*     const [detallePedido, setDetallePedido] = useState([]); */
 
     useEffect(() => {
         getPedido();
-        getAllProductos();
+        /* getAllProductos(); */
+        getAllProcesos();
+
         /* getAllDetalles(); */
     }, [])
 
     /* Get Obejcts */
-    const getAllProductos = async () => {
-        const response = await axios.get(`${endpoint}/productos`);
-        setProductos(response.data);
-
-    }
+    /*  const getAllProductos = async () => {
+         const response = await axios.get(`${endpoint}/productos`);
+         setProductos(response.data);
+ 
+     } */
     const getPedido = async () => {
         const response = await axios.get(`${endpoint}/pedido/${id}`)
         setPedido(response.data)
+
+    }
+    const getAllProcesos = async () => {
+        const response = await axios.get(`${endpoint}/procesoPedido/${id}`)
+        setProceso(response.data)
         console.log(response.data)
     }
     /*    const getAllDetalles = async () => {
@@ -42,13 +50,15 @@ const DetailsProcesoPedido = () => {
     /* Pendiente solucionar el error de la función format */
     const formatDate = (dateString) => {
         if (dateString) {
-            const date = new Date(dateString);
+            const newDate = new Date(dateString).toISOString().slice(0, 10);
+            /* const date = new Date(dateString);
             if (!isNaN(date.getTime())) {
                 const day = String(date.getDate()).padStart(2, '0');
                 const month = String(date.getMonth() + 1).padStart(2, '0');
                 const year = date.getFullYear();
                 return `${day}-${month}-${year}`;
-            }
+            } */
+            return newDate;
         }
         return 'Fecha no válida';
     };
@@ -56,6 +66,7 @@ const DetailsProcesoPedido = () => {
     const cardStyle = {
         width: '18rem',
     };
+
     /* Change the color of badges */
     function getBadgeClass(idEstadoPedido) {
         switch (idEstadoPedido) {
@@ -115,7 +126,9 @@ const DetailsProcesoPedido = () => {
                     <p>Linea: </p>
                     <div className='card' style={cardStyle}>
                         <div className='card-body' >
-                            <p>Linea numero cuatro</p>
+                            {proceso.map((proces) => (
+                                <p>{proces.linea_produccion ? proces.linea_produccion.NOMBRE_LINEA_PRODUCCION : 'Sin comenzar'}</p>
+                            ))}
                         </div>
                     </div>
                 </div>
@@ -129,6 +142,7 @@ const DetailsProcesoPedido = () => {
             <div className='row'>
                 <button className='btn btn-secondary mx-2' onClick={() => navigate('/showProcesoPedidos')}>Regresar</button>
             </div>
+
         </div>
     )
 }

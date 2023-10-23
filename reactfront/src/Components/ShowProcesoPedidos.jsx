@@ -10,10 +10,17 @@ const endpoint = 'http://127.0.0.1:8000/api'
 
 const ShowProcesoPedidos = () => {
     const [pedidos, setPedidos] = useState([])
+    const [proceso, setProceso] = useState([])
 
     useEffect(() => {
-        getAllPedidos()
+        getAllPedidos();
+        getAllProcesos();
     }, [])
+
+    const getAllProcesos = async () => {
+        const response = await axios.get(`${endpoint}/procesoPedidos`)
+        setProceso(response.data)
+    }
 
     const getAllPedidos = async () => {
         const response = await axios.get(`${endpoint}/pedidos`)
@@ -66,8 +73,10 @@ const ShowProcesoPedidos = () => {
                             <tr key={pedido.ID_PEDIDO}>
                                 <td> {pedido.ID_PEDIDO} </td>
                                 <td> {pedido.DESCRIPCION_PEDIDO} </td>
-                                <td> {format(new Date(pedido.FECHA_PEDIDO), 'dd-MM-yyyy')} </td>
-                                <td> {format(new Date(pedido.FECHA_ENTREGA_PEDIDO), 'dd-MM-yyyy')} </td>
+                                {/* <td> {format(new Date(pedido.FECHA_PEDIDO), 'dd-MM-yyyy')} </td>
+                                <td> {format(new Date(pedido.FECHA_ENTREGA_PEDIDO), 'dd-MM-yyyy')} </td> */}
+                                <td> {new Date(pedido.FECHA_PEDIDO).toISOString().slice(0, 10)} </td>
+                                <td> {new Date(pedido.FECHA_ENTREGA_PEDIDO).toISOString().slice(0, 10)} </td>
                                 <td>
                                     <h5>
                                         <span className={`badge ${getBadgeClass(pedido.ID_ESTADO_PEDIDO)}`}>
@@ -75,7 +84,9 @@ const ShowProcesoPedidos = () => {
                                         </span>
                                     </h5>
                                 </td>
-                                <td>Linea</td>
+                                {proceso.map((proces) => (
+                                    <td>{proces.ID_PEDIDO === pedido.ID_PEDIDO && proces.linea_produccion ? proces.linea_produccion.NOMBRE_LINEA_PRODUCCION : 'Sin comenzar'}</td>
+                                ))}
                                 <td>
                                     <Link to={`/DetailsProcesoPedido/${pedido.ID_PEDIDO}`} className='btn btn-primary mx-2'><VscEye /> Ver</Link>
                                 </td>

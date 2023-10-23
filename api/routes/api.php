@@ -13,8 +13,12 @@ use App\Http\Controllers\Api\InvMateriasPrimaController;
 use App\Http\Controllers\Api\TipoProductoController;
 use App\Http\Controllers\Api\ProveedoreController;
 use App\Http\Controllers\Api\CategoriaMateriasPrimaController;
+use App\Http\Controllers\Api\ProcesoPedidoController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+
+
+
 
 
 /*
@@ -53,7 +57,7 @@ Route::controller(VentasController::class)->group(function(){
     Route::get('/ventalast','last');
 
 });
-
+/* Routes for Pedidos, Details and Procedures */
 Route::controller(PedidoController::class)->group(function(){
     Route::get('/pedidos','index');
     Route::post('/pedido','store');
@@ -61,6 +65,14 @@ Route::controller(PedidoController::class)->group(function(){
     Route::put('/pedido/{id}','update');
     Route::put('/pedidoUpdateState/{id}','updateState');
     Route::delete('/pedido/{id}','destroy');
+});
+
+Route::controller(ProcesoPedidoController::class)->group(function(){
+    Route::get('/procesoPedidos','index');
+    Route::post('/procesoPedido','store');
+    Route::get('/procesoPedido/{id}','show');//send idPedido no idProceso
+    Route::put('/procesoPedido/{id}','update');//send idPedido no idProceso
+    Route::delete('/procesoPedido/{id}','destroy');
 });
 
 Route::controller(CotizacionController::class)->group(function(){

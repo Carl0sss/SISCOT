@@ -13,7 +13,8 @@ class ProcesoPedidoController extends Controller
      */
     public function index()
     {
-        //
+        $proceso = ProcesoPedido::with('linea_produccion', 'pedido')->get();
+        return $proceso;
     }
 
     /**
@@ -21,29 +22,35 @@ class ProcesoPedidoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $proceso = new ProcesoPedido();
+        $proceso->ID_PEDIDO = $request->ID_PEDIDO;
+        $proceso->ID_LINEA_PRODUCCION = $request->ID_LINEA_PRODUCCION;
+        $proceso->save();
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(ProcesoPedido $procesoPedido)
+    public function show($id)
     {
-        //
+        $proceso =  ProcesoPedido::with('linea_produccion', 'pedido')->where('ID_PEDIDO', $id)->get();
+        return $proceso;
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, ProcesoPedido $procesoPedido)
+    public function update(Request $request, $id)
     {
-        //
+        $proceso = ProcesoPedido::where('ID_PEDIDO', $id)->get();
+        $proceso->ID_LINEA_PRODUCCION = $request->ID_LINEA_PRODUCCION;
+        $proceso->save();
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(ProcesoPedido $procesoPedido)
+    public function destroy($id)
     {
         //
     }
