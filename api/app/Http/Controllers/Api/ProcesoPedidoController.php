@@ -13,7 +13,7 @@ class ProcesoPedidoController extends Controller
      */
     public function index()
     {
-        $proceso = ProcesoPedido::with('linea_produccion', 'pedido')->get();
+        $proceso = ProcesoPedido::with('linea_produccion')->get();
         return $proceso;
     }
 
@@ -33,7 +33,7 @@ class ProcesoPedidoController extends Controller
      */
     public function show($id)
     {
-        $proceso =  ProcesoPedido::with('linea_produccion', 'pedido')->where('ID_PEDIDO', $id)->get();
+        $proceso =  ProcesoPedido::with('linea_produccion')->where('ID_PEDIDO', $id)->get();
         return $proceso;
     }
 

@@ -13,6 +13,7 @@ use App\Http\Controllers\Api\InvMateriasPrimaController;
 use App\Http\Controllers\Api\TipoProductoController;
 use App\Http\Controllers\Api\ProveedoreController;
 use App\Http\Controllers\Api\CategoriaMateriasPrimaController;
+use App\Http\Controllers\Api\DetallePedidoController;
 use App\Http\Controllers\Api\ProcesoPedidoController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -65,6 +66,15 @@ Route::controller(PedidoController::class)->group(function(){
     Route::put('/pedido/{id}','update');
     Route::put('/pedidoUpdateState/{id}','updateState');
     Route::delete('/pedido/{id}','destroy');
+});
+
+Route::controller(DetallePedidoController::class)->group(function(){
+    Route::get('/detallesPedidos','index');
+    Route::post('/detallesPedido','store');
+    Route::get('/detallesPedido/{id}','show');
+    Route::put('/detallesPedido/{id}','update');
+    Route::put('/detallesPedidoUpdateState/{id}','updateState');
+    Route::delete('/detallesPedido/{id}','destroy');
 });
 
 Route::controller(ProcesoPedidoController::class)->group(function(){

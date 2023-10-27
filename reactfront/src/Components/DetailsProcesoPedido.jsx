@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import { useNavigate, useParams } from 'react-router-dom'
-/* import { format } from 'date-fns'; */
 
 const endpoint = 'http://127.0.0.1:8000/api'
 
@@ -12,24 +11,16 @@ const DetailsProcesoPedido = () => {
     const { id } = useParams();
 
     const [pedido, setPedido] = useState([])
-    /*     const [productos, setProductos] = useState([]); */
     const [proceso, setProceso] = useState([])
-    /*     const [detallePedido, setDetallePedido] = useState([]); */
+    const [detallePedido, setDetallePedido] = useState([]);
 
     useEffect(() => {
         getPedido();
-        /* getAllProductos(); */
         getAllProcesos();
+        getAllDetalles();
+    }, []);
 
-        /* getAllDetalles(); */
-    }, [])
 
-    /* Get Obejcts */
-    /*  const getAllProductos = async () => {
-         const response = await axios.get(`${endpoint}/productos`);
-         setProductos(response.data);
- 
-     } */
     const getPedido = async () => {
         const response = await axios.get(`${endpoint}/pedido/${id}`)
         setPedido(response.data)
@@ -40,10 +31,10 @@ const DetailsProcesoPedido = () => {
         setProceso(response.data)
         console.log(response.data)
     }
-    /*    const getAllDetalles = async () => {
-           const response = await axios.get(`${endpoint}/detallePedido`);
-           setDetallePedido(response.data);
-       } */
+    const getAllDetalles = async () => {
+        const response = await axios.get(`${endpoint}/detallesPedido/${id}`);
+        setDetallePedido(response.data);
+    }
 
     /* FUNCTIONS */
     // Formatear las fechas en el formato deseado 'dd-MM-yyyy'
@@ -134,7 +125,20 @@ const DetailsProcesoPedido = () => {
                 </div>
                 <div className='col md-6'>
                     <p>Detalles: </p>
-
+                    <div className='accordion accordion-flush" id="accordionFlushExample'>
+                        {detallePedido.map((detalle) => (
+                            <div className='accordion-item'>
+                                <h2 className='accordion-header'>
+                                    <button className='accordion-button collapsed' type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+                                        {detalle.ID_PRODUCTO}
+                                    </button>
+                                </h2>
+                                <div id="flush-collapseOne" className='accordion-collapse collapse' data-bs-parent="#accordionFlushExample">
+                                    <div className='accordion-body'>{detalle.ESPECIFICACIONES_PEDIDO}</div>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
                 </div>
 
             </div>
