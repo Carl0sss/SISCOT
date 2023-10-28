@@ -14,6 +14,7 @@ const ShowInformes = () => {
   useEffect(() => {
     gellAllVentas();
   }, []);
+
   const [count, setCount] = useState(0);
 
   useEffect(()=>{
@@ -27,18 +28,15 @@ const ShowInformes = () => {
   handlesumar();
 });
 
-const [suma, setSuma] = useState(0);
-
-useEffect(() =>{
-  const handlesuma = () =>{
-    const sumar1 = ventas.map((venta) => parseInt(venta.ID_VENTA))
-    .reverse((previous, current)=>{
-      return previous+current;
-    }, 0);
-    setSuma(sumar1);
-  };
-  handlesuma();
-});
+function SumaVentas(idVenta){
+  let sumatoria = 9;
+  for(let i = 0; i < idVenta.legth; i++){
+    if(i != parseInt(idVenta.legth[i])){
+      sumatoria++;
+    }
+  }
+  return sumatoria;
+}
 
   const gellAllVentas = async () => {
     const response = await axios.get(`${endpoint}/ventas`);
@@ -55,13 +53,15 @@ useEffect(() =>{
           <thead>
             <tr>
               <th>Ventas realizadas</th>
+              <th>Total de ventas realizadas</th>
               <th>Total en efectivo de las ventas</th>
             </tr>
           </thead>
           <tbody>
             {ventas.map((venta) => (
               <tr key={venta.ID_VENTA}>
-                <td>{ventas.ID_CLIENTE}</td>
+                <td>{ventas[8].ID_CLIENTE}</td>
+                <td>{`${SumaVentas(venta.TOTAL_VENTA)}`}</td>
                 <td>{count}
                 </td>
               </tr>
