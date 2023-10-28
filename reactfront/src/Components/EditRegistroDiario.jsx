@@ -11,6 +11,9 @@ const EditRegistrosDiarios = () => {
     const[ID_PRODUCTO,setIdProducto]=useState('');
     const[ID_DEPARTAMENTO,setIdDepartamento]=useState('');
     const[DETALLES_REGISTRO,setDetallesRegistro]=useState('');
+    const[NOMBRE_PRODUCTO,setIdProductoName]=useState('');
+    const[NOMBRE_DEPARTAMENTO,setIdDepartamentoName]=useState('');
+    const[FECHA,setFecha]=useState('');
     const {id} = useParams();
 
     //En caso de habilitar cambio de Producto o Dpto.
@@ -27,6 +30,9 @@ const EditRegistrosDiarios = () => {
         setIdProducto(response.data.ID_PRODUCTO)
         setIdDepartamento(response.data.ID_DEPARTAMENTO)
         setDetallesRegistro(response.data.DETALLES_REGISTRO)
+        setIdProductoName(response.data.NOMBRE_PRODUCTO)
+        setIdDepartamentoName(response.data.NOMBRE_DEPARTAMENTO)
+        setFecha(response.data.FECHA.substring(0, 10))
         }
     getProductById();
     }, []);
@@ -47,8 +53,10 @@ const EditRegistrosDiarios = () => {
         await axios.put(`${endpoint}${id}`, { 
             ID_PRODUCTO:ID_PRODUCTO,
             ID_DEPARTAMENTO:ID_DEPARTAMENTO,
-            DETALLES_REGISTRO:DETALLES_REGISTRO,})
-        navigate('/')
+            DETALLES_REGISTRO:DETALLES_REGISTRO,
+            NOMBRE_PRODUCTO: NOMBRE_PRODUCTO,
+            NOMBRE_DEPARTAMENTO:NOMBRE_DEPARTAMENTO,})
+        navigate('/showRegistros')
       }
 
     return (
@@ -66,14 +74,14 @@ const EditRegistrosDiarios = () => {
                                     onChange={handleRegistroInputChange}
                                     disabled={true}
                                 >
-                                    <option value=''>{ID_PRODUCTO}</option>
+                                    <option value=''>{NOMBRE_PRODUCTO}</option>
                                     {productos.map((producto) => (
                                         <option key={producto.ID_PRODUCTO} value={producto.ID_PRODUCTO}>
                                             {producto.NOMBRE_PRODUCTO}
                                         </option>
                                     ))}
                                 </select>
-                                <small className='text-muted'>ID Producto</small>
+                                <small className='text-muted'>Producto</small>
                             </div>
                         </div>
                         <div className='mb-3 row'>
@@ -85,14 +93,14 @@ const EditRegistrosDiarios = () => {
                                     onChange={handleRegistroInputChange}
                                     disabled={true}
                                 >
-                                    <option value=''>{ID_DEPARTAMENTO}</option>
+                                    <option value=''>{NOMBRE_DEPARTAMENTO}</option>
                                     {departamentos.map((departamento) => (
                                         <option key={departamento.ID_DEPARTAMENTO} value={departamento.ID_DEPARTAMENTO}>
                                             {departamento.NOMBRE_DEPARTAMENTO}
                                         </option>
                                     ))}
                                 </select>
-                                <small className='text-muted'>ID Departamento</small>
+                                <small className='text-muted'>Departamento</small>
                             </div>
                         </div>
                     </div>
@@ -109,6 +117,18 @@ const EditRegistrosDiarios = () => {
                             <small className='text-muted'>Ingrese la descripción</small>
                         </div>
                     </div>
+                    <div className="mb-3 row">
+                        <label className="col-4 col-form-label">Fecha</label>
+                        <div className="col-8">
+                            <input
+                                value={FECHA}
+                                type='text'
+                                className='form-control'
+                                readOnly // Esto evita la edición del campo
+                            />
+                        <small className="text-muted">Fecha</small>
+                    </div>
+                </div>
                     <div className='col'>
                         <div className='mb-3 row'>
                             <div className='col-8'>
@@ -118,7 +138,7 @@ const EditRegistrosDiarios = () => {
                                 <button
                                     type='button'
                                     className='btn btn-outline-secondary mx-2'
-                                    onClick={() => navigate('/')}
+                                    onClick={() => navigate('/showRegistros')}
                                 >
                                     Cancelar
                                 </button>

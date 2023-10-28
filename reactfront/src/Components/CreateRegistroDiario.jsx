@@ -12,7 +12,11 @@ const CreateRegistrosDiarios = () => {
         ID_PRODUCTO: '',
         ID_DEPARTAMENTO: '',
         DETALLES_REGISTRO: '',
+        NOMBRE_PRODUCTO:'',
+        NOMBRE_DEPARTAMENTO:'',
+        FECHA: new Date(),
     });
+
 
     const handleRegistroInputChange = (e) => {
         setRegistroData({
@@ -20,6 +24,29 @@ const CreateRegistrosDiarios = () => {
             [e.target.name]: e.target.value,
         });
     };
+    const handleRegistroDepartamentoInputChange = (e) => {
+        const selectedDepId = e.target.value;
+        const selectedDep = departamentos.find(departamento => departamento.ID_DEPARTAMENTO === selectedDepId);
+        const depName = selectedDep.NOMBRE_DEPARTAMENTO;
+    
+        setRegistroData({
+            ...registroData,
+            ID_DEPARTAMENTO: selectedDepId,
+            NOMBRE_DEPARTAMENTO: depName, // Asigna el nombre del dep
+        });
+    };
+
+    const handleRegistroProductoInputChange = (e)=>{
+    const selectedProductId = e.target.value;
+    const selectedProduct = productos.find(producto => producto.ID_PRODUCTO === selectedProductId);
+    const productoName = selectedProduct.NOMBRE_PRODUCTO;
+
+    setRegistroData({
+        ...registroData,
+        ID_PRODUCTO: selectedProductId,
+        NOMBRE_PRODUCTO: productoName, // Asigna el nombre del producto
+    });
+    }
 
     const navigate = useNavigate();
 
@@ -45,7 +72,7 @@ const CreateRegistrosDiarios = () => {
             .post(endpoint, registroData)
             .then((response) => {
                 console.log(response.data);
-                navigate('/');
+                navigate('/showRegistros');
             })
             .catch((error) => {
                 console.error(error);
@@ -64,7 +91,7 @@ const CreateRegistrosDiarios = () => {
                                 <select
                                     name='ID_PRODUCTO'
                                     className='form-select'
-                                    onChange={handleRegistroInputChange}
+                                    onChange={handleRegistroProductoInputChange}
                                 >
                                     <option value=''>-- Seleccione un Producto --</option>
                                     {productos.map((producto) => (
@@ -82,7 +109,7 @@ const CreateRegistrosDiarios = () => {
                                 <select
                                     name='ID_DEPARTAMENTO'
                                     className='form-select'
-                                    onChange={handleRegistroInputChange}
+                                    onChange={handleRegistroDepartamentoInputChange}
                                 >
                                     <option value=''>-- Seleccione un Departamento --</option>
                                     {departamentos.map((departamento) => (

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Models\RegistroDiario;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
 
 class RegistroDiarioController extends Controller
 {
@@ -31,10 +32,14 @@ class RegistroDiarioController extends Controller
      */
     public function store(Request $request)
     {
+        $fecha = Carbon::now();
         $registroDiario = new RegistroDiario();
         $registroDiario->ID_PRODUCTO = $request->ID_PRODUCTO;
         $registroDiario->ID_DEPARTAMENTO = $request->ID_DEPARTAMENTO;
         $registroDiario->DETALLES_REGISTRO = $request->DETALLES_REGISTRO;
+        $registroDiario->NOMBRE_PRODUCTO = $request->NOMBRE_PRODUCTO;
+        $registroDiario->NOMBRE_DEPARTAMENTO = $request->NOMBRE_DEPARTAMENTO;
+        $registroDiario->FECHA = $fecha;
 
         $registroDiario->save();
 
@@ -60,9 +65,12 @@ class RegistroDiarioController extends Controller
     public function update(Request $request, $id)
     {
         $registroDiario = RegistroDiario::findOrFail($request->id);
-        $registroDiario->ID_PRODUCTO = $request->ID_PRODUCTO;
-        $registroDiario->ID_DEPARTAMENTO = $request->ID_DEPARTAMENTO;
+        $registroDiario->ID_PRODUCTO = $registroDiario->ID_PRODUCTO;
+        $registroDiario->ID_DEPARTAMENTO = $registroDiario->ID_DEPARTAMENTO;
         $registroDiario->DETALLES_REGISTRO = $request->DETALLES_REGISTRO;
+        $registroDiario->NOMBRE_PRODUCTO = $registroDiario->NOMBRE_PRODUCTO;
+        $registroDiario->NOMBRE_DEPARTAMENTO = $registroDiario->NOMBRE_DEPARTAMENTO;
+        $registroDiario->FECHA = $registroDiario->FECHA;
        
         $registroDiario->save();
         return $registroDiario;

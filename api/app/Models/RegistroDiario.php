@@ -17,6 +17,9 @@ use Illuminate\Database\Eloquent\Model;
  * @property string|null $ID_PRODUCTO
  * @property string|null $ID_DEPARTAMENTO
  * @property string|null $DETALLES_REGISTRO
+ * @property string|null $NOMBRE_PRODUCTO
+ * @property string|null $NOMBRE_DEPARTAMENTO
+ * @property Carbon|null $FECHA
  * 
  * @property Producto|null $producto
  * @property Departamento|null $departamento
@@ -32,12 +35,16 @@ class RegistroDiario extends Model
 	public $timestamps = false;
 
 	protected $casts = [
+		'FECHA' => 'datetime'
 	];
 
 	protected $fillable = [
 		'ID_PRODUCTO',
 		'ID_DEPARTAMENTO',
 		'DETALLES_REGISTRO',
+		'NOMBRE_PRODUCTO',
+        'NOMBRE_DEPARTAMENTO',
+		'FECHA'
 	];
 
 	public function producto()
