@@ -1,10 +1,30 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import { useNavigate, useParams } from 'react-router-dom'
+import toast, { Toaster } from 'react-hot-toast';
 
 const endpoint = 'http://127.0.0.1:8000/api'
 
 const DetailsProcesoPedido = () => {
+
+    const notify = () => toast.success('Linea actualizada con exito', {
+        position: 'top-right',
+        style: {
+
+            background: '#72F961',
+            minWidth: '300px',
+        }
+    }
+    );
+    const errorNotify = () => toast.success('No se puedo actualizar la linea', {
+        position: 'top-right',
+        style: {
+
+            background: '#FF0000',
+            minWidth: '300px',
+        }
+    }
+    );
 
 
     const navigate = useNavigate();
@@ -12,12 +32,11 @@ const DetailsProcesoPedido = () => {
 
     const [pedido, setPedido] = useState([])
     const [proceso, setProceso] = useState([])
+    const [tempData, setTempData] = useState({
+        ID_PEDIDO: '',
+        ID_LINEA_PRODUCCION: 1
+    })
     const [detallePedido, setDetallePedido] = useState([]);
-
-    const [lineaProduccionActual, setLineaProduccionActual] = useState(0); // Inicialmente, la línea de producción es 0.
-    const [estadoPedido, setEstadoPedido] = useState('');
-    // Inicialmente, obtén el estado del pedido del objeto pedido.
-
 
     useEffect(() => {
         getPedido();
@@ -29,10 +48,6 @@ const DetailsProcesoPedido = () => {
     const getPedido = async () => {
         const response = await axios.get(`${endpoint}/pedido/${id}`)
         setPedido(response.data)
-        const a = response.data.estado_pedido.NOMBRE_ESTADO;
-        setEstadoPedido(a);
-
-        console.log(estadoPedido)
     }
     const getAllProcesos = async () => {
         const response = await axios.get(`${endpoint}/procesoPedido/${id}`)
@@ -44,37 +59,103 @@ const DetailsProcesoPedido = () => {
         setDetallePedido(response.data);
     }
 
-    const avanzarLineaProduccion = async () => {
+
+
+    const avanzarLineaProduccion = (idLinea) => {
         try {
-            const response = await axios.put(`${endpoint}/pedido/avanzarLineaProduccion/${pedido.ID_PEDIDO}`);
-            console.log(response.data); // Manejar la respuesta del servidor, si es necesario.
-            // Actualiza el estado o realiza otras acciones necesarias.
+            let nuevaLineaProduccion = 1;
+            if (idLinea !== 0) {
+                if (idLinea === 1) {
+                    nuevaLineaProduccion = idLinea + 1;
+                    setProceso({
+                        ...proceso,
+                        ID_LINEA_PRODUCCION: nuevaLineaProduccion
+                    });
+                    setPedido({
+                        ...pedido,
+                        ID_ESTADO_PEDIDO: 3
+                    });
+                    updateLinea();
+                } else if (idLinea === 7) {
+                    nuevaLineaProduccion = idLinea + 1;
+                    setProceso({
+                        ...proceso,
+                        ID_LINEA_PRODUCCION: nuevaLineaProduccion
+                    });
+                    setPedido({
+                        ...pedido,
+                        ID_ESTADO_PEDIDO: 4
+                    });
+                    updateLinea();
+                } else {
+                    nuevaLineaProduccion = idLinea + 1;
+                    setProceso({
+                        ...proceso,
+                        ID_LINEA_PRODUCCION: nuevaLineaProduccion
+                    });
+                }
+            } else {
+                setTempData({
+                    ...tempData,
+                    ID_PEDIDO: id,
+                    ID_LINEA_PRODUCCION: 1
+                });
+                setPedido({
+                    ...pedido,
+                    ID_ESTADO_PEDIDO: 2
+                });
+                storeProceso();
+            }
+
         } catch (error) {
             console.error(error);
             // Manejar el error, si es necesario.
         }
     };
 
-    const pasarARevision = async () => {
-        try {
-            const response = await axios.put(`${endpoint}/pedido/pasarARevision/${pedido.ID_PEDIDO}`);
-            console.log(response.data); // Manejar la respuesta del servidor, si es necesario.
-            // Actualiza el estado o realiza otras acciones necesarias.
-        } catch (error) {
+    const updateLinea = async () => {
+        await axios.put(`${endpoint}/procesoPedido/${id}`, proceso).then((response) => {
+            console.log(response.data);
+            notify();
+        }).catch((error) => {
             console.error(error);
-            // Manejar el error, si es necesario.
-        }
+            errorNotify();
+            // Manejar el error
+        });
+    };
+    const storeProceso = async () => {
+        await axios.post(`${endpoint}/procesoPedido`, tempData).then((response) => {
+            console.log(response.data);
+            notify();
+        }).catch((error) => {
+            console.error(error);
+            errorNotify();
+            // Manejar el error
+        });
     };
 
-    const finalizarPedido = async () => {
-        try {
-            const response = await axios.put(`${endpoint}/pedido/finalizarPedido/${pedido.ID_PEDIDO}`);
-            console.log(response.data); // Manejar la respuesta del servidor, si es necesario.
-            // Actualiza el estado o realiza otras acciones necesarias.
-        } catch (error) {
-            console.error(error);
-            // Manejar el error, si es necesario.
-        }
+    const pasarARevision = () => {
+        setProceso({
+            ...proceso,
+            ID_LINEA_PRODUCCION: 9
+        });
+        setPedido({
+            ...pedido,
+            ID_ESTADO_PEDIDO: 5
+        });
+        updateLinea();
+    };
+
+    const finalizarPedido = () => {
+        setProceso({
+            ...proceso,
+            ID_LINEA_PRODUCCION: 10
+        });
+        setPedido({
+            ...pedido,
+            ID_ESTADO_PEDIDO: 6
+        });
+        updateLinea();
     };
 
 
@@ -125,6 +206,7 @@ const DetailsProcesoPedido = () => {
 
     return (
         <div className="container mt-5">
+            <Toaster />
             <h2 className='mb-4'>Seguimiento proceso pedido Nº {pedido.ID_PEDIDO}</h2>
             <hr />
             <div className='row'>

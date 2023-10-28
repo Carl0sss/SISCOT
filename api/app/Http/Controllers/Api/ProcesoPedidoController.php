@@ -42,7 +42,7 @@ class ProcesoPedidoController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $proceso = ProcesoPedido::where('ID_PEDIDO', $id)->get();
+        $proceso = ProcesoPedido::where('ID_PEDIDO', $id)->first(); // Usar first() para obtener un solo registro
         $proceso->ID_LINEA_PRODUCCION = $request->ID_LINEA_PRODUCCION;
         $proceso->save();
     }
