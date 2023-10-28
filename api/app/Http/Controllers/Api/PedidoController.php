@@ -113,4 +113,41 @@ class PedidoController extends Controller
         DetallePedido::where('ID_PEDIDO', $id)->delete();
         Pedido::destroy($id);
     }
+
+    public function avanzarLineaProduccion( $id)
+    {
+        // Actualiza la línea de producción del pedido.
+        $pedido = Pedido::findOrFail($id);
+        $pedido->ID_ESTADO_PEDIDO = 2; // Cambia el estado a "En Proceso".
+        $pedido->save();
+
+        // Agregar la lógica para avanzar la línea de producción actual (Puedes usar ProcesoPedido).
+
+        // Retornar una respuesta exitosa o un mensaje.
+        return response()->json(['message' => 'Línea de producción avanzada con éxito']);
+    }
+    public function pasarARevision( $id)
+    {
+        // Cambia el estado del pedido a "Revisión".
+        $pedido = Pedido::findOrFail($id);
+        $pedido->ID_ESTADO_PEDIDO = 4; // Cambia el estado a "Revisión".
+        $pedido->save();
+
+        // Agregar la lógica para marcar el cumplimiento de los estándares (si es necesario).
+
+        // Retornar una respuesta exitosa o un mensaje.
+        return response()->json(['message' => 'Pedido en estado de revisión']);
+    }
+    public function finalizarPedido($id)
+    {
+        // Cambia el estado del pedido a "Finalizado".
+        $pedido = Pedido::findOrFail($id);
+        $pedido->ID_ESTADO_PEDIDO = 6; // Cambia el estado a "Finalizado".
+        $pedido->save();
+
+        // Agregar cualquier lógica adicional necesaria para finalizar el pedido.
+
+        // Retornar una respuesta exitosa o un mensaje.
+        return response()->json(['message' => 'Pedido finalizado con éxito']);
+    }
 }

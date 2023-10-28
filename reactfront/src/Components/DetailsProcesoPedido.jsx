@@ -14,6 +14,11 @@ const DetailsProcesoPedido = () => {
     const [proceso, setProceso] = useState([])
     const [detallePedido, setDetallePedido] = useState([]);
 
+    const [lineaProduccionActual, setLineaProduccionActual] = useState(0); // Inicialmente, la línea de producción es 0.
+    const [estadoPedido, setEstadoPedido] = useState('');
+    // Inicialmente, obtén el estado del pedido del objeto pedido.
+
+
     useEffect(() => {
         getPedido();
         getAllProcesos();
@@ -24,7 +29,10 @@ const DetailsProcesoPedido = () => {
     const getPedido = async () => {
         const response = await axios.get(`${endpoint}/pedido/${id}`)
         setPedido(response.data)
+        const a = response.data.estado_pedido.NOMBRE_ESTADO;
+        setEstadoPedido(a);
 
+        console.log(estadoPedido)
     }
     const getAllProcesos = async () => {
         const response = await axios.get(`${endpoint}/procesoPedido/${id}`)
@@ -35,6 +43,41 @@ const DetailsProcesoPedido = () => {
         const response = await axios.get(`${endpoint}/detallesPedido/${id}`);
         setDetallePedido(response.data);
     }
+
+    const avanzarLineaProduccion = async () => {
+        try {
+            const response = await axios.put(`${endpoint}/pedido/avanzarLineaProduccion/${pedido.ID_PEDIDO}`);
+            console.log(response.data); // Manejar la respuesta del servidor, si es necesario.
+            // Actualiza el estado o realiza otras acciones necesarias.
+        } catch (error) {
+            console.error(error);
+            // Manejar el error, si es necesario.
+        }
+    };
+
+    const pasarARevision = async () => {
+        try {
+            const response = await axios.put(`${endpoint}/pedido/pasarARevision/${pedido.ID_PEDIDO}`);
+            console.log(response.data); // Manejar la respuesta del servidor, si es necesario.
+            // Actualiza el estado o realiza otras acciones necesarias.
+        } catch (error) {
+            console.error(error);
+            // Manejar el error, si es necesario.
+        }
+    };
+
+    const finalizarPedido = async () => {
+        try {
+            const response = await axios.put(`${endpoint}/pedido/finalizarPedido/${pedido.ID_PEDIDO}`);
+            console.log(response.data); // Manejar la respuesta del servidor, si es necesario.
+            // Actualiza el estado o realiza otras acciones necesarias.
+        } catch (error) {
+            console.error(error);
+            // Manejar el error, si es necesario.
+        }
+    };
+
+
 
     /* FUNCTIONS */
     // Formatear las fechas en el formato deseado 'dd-MM-yyyy'
@@ -96,17 +139,26 @@ const DetailsProcesoPedido = () => {
                 </div>
                 <div className='col-md-6'>
                     <p>
-                        <button className='btn btn-outline-primary'>Inciar Producción</button>
+                        <button className='btn btn-outline-primary' onClick={avanzarLineaProduccion} disabled={estadoPedido !== 'No Iniciado' || lineaProduccionActual >= proceso.length - 1}>
+                            Iniciar Producción
+                        </button>
                     </p>
                     <p>
-                        <button className='btn btn-outline-warning'>Avanzar Linea</button></p>
-                    <p>
-                        <button className='btn btn-outline-info'>Revisar</button>
+                        <button className='btn btn-outline-warning' onClick={avanzarLineaProduccion} disabled={estadoPedido !== 'En Proceso' || lineaProduccionActual >= proceso.length - 1}>
+                            Avanzar Línea
+                        </button>
                     </p>
                     <p>
-                        <button className='btn btn-outline-success'>Finalizar</button>
-                    </p>
+                        <button className='btn btn-outline-info' onClick={pasarARevision} disabled={estadoPedido !== 'Revisión'}>
+                            Revisar
+                        </button>
 
+                    </p>
+                    <p>
+                        <button className='btn btn-outline-success' onClick={finalizarPedido} disabled={estadoPedido !== 'Revisado'}>
+                            Finalizar
+                        </button>
+                    </p>
 
                 </div>
             </div>
