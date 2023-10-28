@@ -221,23 +221,23 @@ const DetailsProcesoPedido = () => {
                 </div>
                 <div className='col-md-6'>
                     <p>
-                        <button className='btn btn-outline-primary' onClick={avanzarLineaProduccion} disabled={estadoPedido !== 'No Iniciado' || lineaProduccionActual >= proceso.length - 1}>
+                        <button className='btn btn-outline-primary'>
                             Iniciar Producción
                         </button>
                     </p>
                     <p>
-                        <button className='btn btn-outline-warning' onClick={avanzarLineaProduccion} disabled={estadoPedido !== 'En Proceso' || lineaProduccionActual >= proceso.length - 1}>
+                        <button className='btn btn-outline-warning'>
                             Avanzar Línea
                         </button>
                     </p>
                     <p>
-                        <button className='btn btn-outline-info' onClick={pasarARevision} disabled={estadoPedido !== 'Revisión'}>
+                        <button className='btn btn-outline-info'>
                             Revisar
                         </button>
 
                     </p>
                     <p>
-                        <button className='btn btn-outline-success' onClick={finalizarPedido} disabled={estadoPedido !== 'Revisado'}>
+                        <button className='btn btn-outline-success'>
                             Finalizar
                         </button>
                     </p>
