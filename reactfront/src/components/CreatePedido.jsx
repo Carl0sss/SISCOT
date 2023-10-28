@@ -99,7 +99,7 @@ const CreatePedido = () => {
 
     return (
         <div className='bg-white'>
-            <h4>Registrar pedido</h4>
+            <h4>Registrar cotización</h4>
             <div className="container">
                 <form onSubmit={store} className='d-flex row'>
                     <div className='col-md-6'>
@@ -184,7 +184,7 @@ const CreatePedido = () => {
                 </form>
             </div>
             <hr />
-            <h6>Detalles del pedido</h6>
+            <h6>Detalles Cotización</h6>
             <div className="container">
                 <form onSubmit={handleAgregarDetalle} className='d-flex row'>
                     <div className='col-md-6'>
@@ -242,8 +242,7 @@ const CreatePedido = () => {
                     </div>
                 </form>
             </div>
-            <hr />
-            <h6>Resumen de detalles del pedido</h6>
+            <h6>Resumen detalles cotización</h6>
             <div className="container">
                 <table className="table mt-3">
                     <thead>

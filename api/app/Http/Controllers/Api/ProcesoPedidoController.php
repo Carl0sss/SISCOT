@@ -13,7 +13,7 @@ class ProcesoPedidoController extends Controller
      */
     public function index()
     {
-        $proceso = ProcesoPedido::with('linea_produccion')->get();
+        $proceso = ProcesoPedido::with('linea_produccion', 'pedido')->get();
         return $proceso;
     }
 
@@ -33,7 +33,7 @@ class ProcesoPedidoController extends Controller
      */
     public function show($id)
     {
-        $proceso =  ProcesoPedido::with('linea_produccion')->where('ID_PEDIDO', $id)->get();
+        $proceso =  ProcesoPedido::with('linea_produccion', 'pedido')->where('ID_PEDIDO', $id)->get();
         return $proceso;
     }
 
@@ -42,7 +42,7 @@ class ProcesoPedidoController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $proceso = ProcesoPedido::where('ID_PEDIDO', $id)->first(); // Usar first() para obtener un solo registro
+        $proceso = ProcesoPedido::where('ID_PEDIDO', $id)->get();
         $proceso->ID_LINEA_PRODUCCION = $request->ID_LINEA_PRODUCCION;
         $proceso->save();
     }
