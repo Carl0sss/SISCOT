@@ -1,112 +1,142 @@
-import React, { useEffect, useState } from 'react'
-import axios from 'axios'
-import { useNavigate, useParams } from 'react-router-dom'
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
+import { useNavigate, useParams } from 'react-router-dom';
 import toast, { Toaster } from 'react-hot-toast';
 
-const endpoint = 'http://127.0.0.1:8000/api'
+const endpoint = 'http://127.0.0.1:8000/api';
 
 const DetailsProcesoPedido = () => {
-
-    const notify = () => toast.success('Linea actualizada con exito', {
-        position: 'top-right',
-        style: {
-
-            background: '#72F961',
-            minWidth: '300px',
-        }
-    }
-    );
-    const errorNotify = () => toast.success('No se puedo actualizar la linea', {
-        position: 'top-right',
-        style: {
-
-            background: '#FF0000',
-            minWidth: '300px',
-        }
-    }
-    );
-
-
     const navigate = useNavigate();
     const { id } = useParams();
-
-    const [pedido, setPedido] = useState([])
-    const [proceso, setProceso] = useState([])
-    const [tempData, setTempData] = useState({
-        ID_PEDIDO: '',
-        ID_LINEA_PRODUCCION: 1
-    })
+    const [pedido, setPedido] = useState([]);
+    const [proceso, setProceso] = useState([]);
     const [detallePedido, setDetallePedido] = useState([]);
+    const [tempData, setTempData] = useState({
+        ID_PEDIDO: id,
+        ID_LINEA_PRODUCCION: 1,
+    });
+    const [tempo, setTempo] = useState({
+        ID_ESTADO_PEDIDO: 2,
+    });
+
+    const notify = () =>
+        toast.success('Línea actualizada con éxito', {
+            position: 'top-right',
+            style: {
+                background: '#72F961',
+                minWidth: '300px',
+            },
+        });
+
+    const errorNotify = () =>
+        toast.error('No se pudo actualizar la línea', {
+            position: 'top-right',
+            style: {
+                background: '#FF0000',
+                minWidth: '300px',
+            },
+        });
+
+    const [showIniciarProduccion, setShowIniciarProduccion] = useState(false);
+    const [showAvanzarLinea, setShowAvanzarLinea] = useState(false);
+    const [showRevisar, setShowRevisar] = useState(false);
+    const [showFinalizar, setShowFinalizar] = useState(false);
 
     useEffect(() => {
         getPedido();
-        getAllProcesos();
         getAllDetalles();
     }, []);
 
+    useEffect(() => {
+        getAllProcesos();
+    }, [id]);
 
     const getPedido = async () => {
-        const response = await axios.get(`${endpoint}/pedido/${id}`)
-        setPedido(response.data)
-    }
-    const getAllProcesos = async () => {
-        const response = await axios.get(`${endpoint}/procesoPedido/${id}`)
-        setProceso(response.data)
-        console.log(response.data)
-    }
-    const getAllDetalles = async () => {
-        const response = await axios.get(`${endpoint}/detallesPedido/${id}`);
-        setDetallePedido(response.data);
-    }
-
-
-
-    const avanzarLineaProduccion = (idLinea) => {
         try {
-            let nuevaLineaProduccion = 1;
+            const response = await axios.get(`${endpoint}/pedido/${id}`);
+            setPedido(response.data);
+        } catch (error) {
+            console.error(error);
+        }
+    };
+
+    const getAllProcesos = async () => {
+        try {
+            const response = await axios.get(`${endpoint}/procesoPedido/${id}`);
+            setProceso(response.data);
+            setShowIniciarProduccion(response.data.length === 0);
+            setShowAvanzarLinea(
+                response.data.length > 0 &&
+                pedido.ID_ESTADO_PEDIDO !== 4 &&
+                pedido.ID_ESTADO_PEDIDO !== 5
+            );
+            setShowRevisar(pedido.ID_ESTADO_PEDIDO === 4);
+            setShowFinalizar(pedido.ID_ESTADO_PEDIDO === 5);
+        } catch (error) {
+            console.error(error);
+        }
+    };
+
+    const getAllDetalles = async () => {
+        try {
+            const response = await axios.get(`${endpoint}/detallesPedido/${id}`);
+            setDetallePedido(response.data);
+        } catch (error) {
+            console.error(error);
+        }
+    };
+
+    const avanzarLineaProduccion = async (idLinea) => {
+        try {
+            let nuevaLineaProduccion;
             if (idLinea !== 0) {
                 if (idLinea === 1) {
                     nuevaLineaProduccion = idLinea + 1;
-                    setProceso({
-                        ...proceso,
-                        ID_LINEA_PRODUCCION: nuevaLineaProduccion
+                    console.log(nuevaLineaProduccion)
+                    setTempData({
+                        ...tempData,
+                        ID_LINEA_PRODUCCION: nuevaLineaProduccion,
                     });
-                    setPedido({
-                        ...pedido,
-                        ID_ESTADO_PEDIDO: 3
+                    setTempo({
+                        ...tempo,
+                        ID_ESTADO_PEDIDO: 3,
                     });
+                    console.log(tempData)
+                    console.log(tempo)
                     updateLinea();
+                    updateState();
                 } else if (idLinea === 7) {
                     nuevaLineaProduccion = idLinea + 1;
-                    setProceso({
-                        ...proceso,
-                        ID_LINEA_PRODUCCION: nuevaLineaProduccion
+                    setTempData({
+                        ...tempData,
+                        ID_LINEA_PRODUCCION: nuevaLineaProduccion,
                     });
-                    setPedido({
-                        ...pedido,
-                        ID_ESTADO_PEDIDO: 4
+                    setTempo({
+                        ...tempo,
+                        ID_ESTADO_PEDIDO: 4,
                     });
                     updateLinea();
+                    updateState();
                 } else {
                     nuevaLineaProduccion = idLinea + 1;
-                    setProceso({
-                        ...proceso,
-                        ID_LINEA_PRODUCCION: nuevaLineaProduccion
+                    setTempData({
+                        ...tempData,
+                        ID_LINEA_PRODUCCION: nuevaLineaProduccion,
                     });
                 }
             } else {
                 setTempData({
                     ...tempData,
                     ID_PEDIDO: id,
-                    ID_LINEA_PRODUCCION: 1
+                    ID_LINEA_PRODUCCION: 1,
                 });
-                setPedido({
-                    ...pedido,
-                    ID_ESTADO_PEDIDO: 2
+                setTempo({
+                    ...tempo,
+                    ID_ESTADO_PEDIDO: 2,
                 });
                 storeProceso();
+                updateState();
             }
-
         } catch (error) {
             console.error(error);
             // Manejar el error, si es necesario.
@@ -114,65 +144,65 @@ const DetailsProcesoPedido = () => {
     };
 
     const updateLinea = async () => {
-        await axios.put(`${endpoint}/procesoPedido/${id}`, proceso).then((response) => {
-            console.log(response.data);
+        try {
+            await axios.put(`${endpoint}/procesoPedido/${id}`, tempData);
             notify();
-        }).catch((error) => {
+        } catch (error) {
             console.error(error);
             errorNotify();
-            // Manejar el error
-        });
+        }
     };
+
     const storeProceso = async () => {
-        await axios.post(`${endpoint}/procesoPedido`, tempData).then((response) => {
-            console.log(response.data);
+        try {
+            await axios.post(`${endpoint}/procesoPedido`, tempData);
             notify();
-        }).catch((error) => {
+        } catch (error) {
             console.error(error);
             errorNotify();
-            // Manejar el error
-        });
+        }
+    };
+
+    const updateState = async () => {
+        try {
+            await axios.put(`${endpoint}/pedidoUpdateState/${id}`, tempo);
+            notify();
+        } catch (error) {
+            console.error(error);
+            errorNotify();
+        }
     };
 
     const pasarARevision = () => {
-        setProceso({
-            ...proceso,
-            ID_LINEA_PRODUCCION: 9
+        setTempData({
+            ...tempData,
+            ID_LINEA_PRODUCCION: 9,
         });
-        setPedido({
-            ...pedido,
-            ID_ESTADO_PEDIDO: 5
+        setTempo({
+            ...tempo,
+            ID_ESTADO_PEDIDO: 5,
         });
         updateLinea();
+        updateState();
     };
 
     const finalizarPedido = () => {
-        setProceso({
-            ...proceso,
-            ID_LINEA_PRODUCCION: 10
+        setTempData({
+            ...tempData,
+            ID_LINEA_PRODUCCION: 10,
         });
-        setPedido({
-            ...pedido,
-            ID_ESTADO_PEDIDO: 6
+        setTempo({
+            ...tempo,
+            ID_ESTADO_PEDIDO: 6,
         });
         updateLinea();
+        updateState();
     };
 
-
-
     /* FUNCTIONS */
-    // Formatear las fechas en el formato deseado 'dd-MM-yyyy'
-    /* Pendiente solucionar el error de la función format */
     const formatDate = (dateString) => {
         if (dateString) {
             const newDate = new Date(dateString).toISOString().slice(0, 10);
-            /* const date = new Date(dateString);
-            if (!isNaN(date.getTime())) {
-                const day = String(date.getDate()).padStart(2, '0');
-                const month = String(date.getMonth() + 1).padStart(2, '0');
-                const year = date.getFullYear();
-                return `${day}-${month}-${year}`;
-            } */
             return newDate;
         }
         return 'Fecha no válida';
@@ -182,7 +212,6 @@ const DetailsProcesoPedido = () => {
         width: '18rem',
     };
 
-    /* Change the color of badges */
     function getBadgeClass(idEstadoPedido) {
         switch (idEstadoPedido) {
             case 1:
@@ -198,13 +227,12 @@ const DetailsProcesoPedido = () => {
             case 6:
                 return 'text-bg-success';
             default:
-                // Si el valor no coincide con ninguno de los casos anteriores, puedes proporcionar una clase predeterminada.
                 return 'text-bg-default';
         }
     }
 
-
     return (
+
         <div className="container mt-5">
             <Toaster />
             <h2 className='mb-4'>Seguimiento proceso pedido Nº {pedido.ID_PEDIDO}</h2>
@@ -220,39 +248,44 @@ const DetailsProcesoPedido = () => {
 
                 </div>
                 <div className='col-md-6'>
-                    <p>
-                        <button className='btn btn-outline-primary'>
-                            Iniciar Producción
-                        </button>
-                    </p>
-                    <p>
-                        <button className='btn btn-outline-warning'>
-                            Avanzar Línea
-                        </button>
-                    </p>
-                    <p>
-                        <button className='btn btn-outline-info'>
-                            Revisar
-                        </button>
-
-                    </p>
-                    <p>
-                        <button className='btn btn-outline-success'>
-                            Finalizar
-                        </button>
-                    </p>
-
+                    {showIniciarProduccion && (
+                        <p>
+                            <button className='btn btn-outline-primary' onClick={() => avanzarLineaProduccion(0)}>
+                                Iniciar Producción
+                            </button>
+                        </p>
+                    )}
+                    {showAvanzarLinea && (
+                        <p>
+                            <button className='btn btn-outline-warning' onClick={() => avanzarLineaProduccion(proceso[0].ID_LINEA_PRODUCCION)}>
+                                Avanzar Línea
+                            </button>
+                        </p>
+                    )}
+                    {showRevisar && (
+                        <p>
+                            <button className='btn btn-outline-info' onClick={pasarARevision}>
+                                Revisar
+                            </button>
+                        </p>
+                    )}
+                    {showFinalizar && (
+                        <p>
+                            <button className='btn btn-outline-success' onClick={finalizarPedido}>
+                                Finalizar
+                            </button>
+                        </p>
+                    )}
                 </div>
             </div>
             <hr />
             <div className='row'>
                 <div className='col md-6'>
-                    <p>Estandares:</p>
                     <p>Linea: </p>
                     <div className='card' style={cardStyle}>
                         <div className='card-body' >
                             {proceso.map((proces) => (
-                                <p>{proces.linea_produccion ? proces.linea_produccion.NOMBRE_LINEA_PRODUCCION : 'Sin comenzar'}</p>
+                                <b key={proces.ID_PROCESO}>{proces.linea_produccion ? proces.linea_produccion.NOMBRE_LINEA_PRODUCCION : 'Sin comenzar'}</b>
                             ))}
                         </div>
                     </div>
@@ -282,7 +315,8 @@ const DetailsProcesoPedido = () => {
             </div>
 
         </div>
-    )
-}
 
-export default DetailsProcesoPedido
+    );
+};
+
+export default DetailsProcesoPedido;

@@ -65,10 +65,6 @@ Route::controller(PedidoController::class)->group(function () {
     Route::put('/pedido/{id}', 'update');
     Route::put('/pedidoUpdateState/{id}', 'updateState');
     Route::delete('/pedido/{id}', 'destroy');
-    // Otras rutas existentes
-    Route::put('/pedido/avanzarLineaProduccion/{id}', 'avanzarLineaProduccion');
-    Route::put('/pedido/pasarARevision/{id}', 'pasarARevision');
-    Route::put('/pedido/finalizarPedido/{id}', 'finalizarPedido');
 });
 
 Route::controller(DetallePedidoController::class)->group(function () {
