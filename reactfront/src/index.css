@@ -5,12 +5,6 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-
-}
-
-/* Recordar arreglar esto */
-span{
-  color: white;
 }
 
 code {
@@ -18,11 +12,7 @@ code {
     monospace;
 }
 
-.logo-image {
-  max-height: 45px;
-  padding-left: 100px;
-}
 
-.sidebar{
-  background-color: #23C4A7;
-}
+/* $custom-color-1: #23C4A7 !default;
+$custom-color-2: #707070 !default;
+$custom-color-3: #ECECEC !default; */

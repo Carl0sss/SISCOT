@@ -15,6 +15,7 @@ use Illuminate\Database\Eloquent\Model;
  * 
  * @property string $ID_PEDIDO
  * @property string|null $ID_CLIENTE
+ * @property int|null $ID_ESTADO_PEDIDO
  * @property string|null $DESCRIPCION_PEDIDO
  * @property float|null $TOTAL_PEDIDO
  * @property float|null $SUBTOTAL_PEDIDO
@@ -23,7 +24,10 @@ use Illuminate\Database\Eloquent\Model;
  * @property Carbon|null $FECHA_ENTREGA_PEDIDO
  * 
  * @property Cliente|null $cliente
+ * @property EstadoPedido|null $estado_pedido
  * @property Collection|DetallePedido[] $detalle_pedidos
+ * @property Collection|EstandaresPedido[] $estandares_pedidos
+ * @property Collection|ProcesoPedido[] $proceso_pedidos
  *
  * @package App\Models
  */
@@ -35,6 +39,7 @@ class Pedido extends Model
 	public $timestamps = false;
 
 	protected $casts = [
+		'ID_ESTADO_PEDIDO' => 'int',
 		'TOTAL_PEDIDO' => 'float',
 		'SUBTOTAL_PEDIDO' => 'float',
 		'IVA_PEDIDO' => 'float',
@@ -44,6 +49,7 @@ class Pedido extends Model
 
 	protected $fillable = [
 		'ID_CLIENTE',
+		'ID_ESTADO_PEDIDO',
 		'DESCRIPCION_PEDIDO',
 		'TOTAL_PEDIDO',
 		'SUBTOTAL_PEDIDO',
@@ -57,8 +63,23 @@ class Pedido extends Model
 		return $this->belongsTo(Cliente::class, 'ID_CLIENTE');
 	}
 
+	public function estado_pedido()
+	{
+		return $this->belongsTo(EstadoPedido::class, 'ID_ESTADO_PEDIDO');
+	}
+
 	public function detalle_pedidos()
 	{
 		return $this->hasMany(DetallePedido::class, 'ID_PEDIDO');
+	}
+
+	public function estandares_pedidos()
+	{
+		return $this->hasMany(EstandaresPedido::class, 'ID_PEDIDO');
+	}
+
+	public function proceso_pedidos()
+	{
+		return $this->hasMany(ProcesoPedido::class, 'ID_PEDIDO');
 	}
 }

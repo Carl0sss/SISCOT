@@ -34,7 +34,78 @@
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
+}
+
+/* Recordar arreglar esto */
+.card {
+  cursor: pointer;
+}
+
+/* .card-img-top {
+  width: 15rem;
+  height: 10rem;
+} */
+
+/* Some customs styles */
+.logo-image {
+  height: 60px;
+  margin-left: 40px;
+}
+
+.sidebar {
+  width: 240px;
+  background-color: #23C4A7;
+  color: white;
+  padding: 1rem
+}
+
+.navbar {
+  box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.nav-item {
+  display: flex;
+  flex-direction: column;
+  align-items: right;
+  display: block;
+  width: 100%;
+  margin-top: 10px;
+  margin-bottom: 20px;
+  padding: 10px 20px;
+  background-color: #1c8673;
+  color: white;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+
+}
+
+.nav-item:hover {
+  background-color: #197a64;
+}
+
+.defaultLayout {
+  background-color: #ECECEC;
+}
+
+/* Styles for tables */
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table th,
+.table td {
+  padding: 8px;
+  text-align: center;
+  vertical-align: middle;
+  background-color: #ffff;
+}
+
+.table th {
+  background-color: #ECECEC !important;
 }
