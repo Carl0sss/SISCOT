@@ -1,8 +1,7 @@
 import React from 'react'
 import torogoz from '../images/logo.png'
-import { VscOutput } from "react-icons/vsc"
-import { VscRepo } from "react-icons/vsc"
-import { Link, Navigate, Outlet } from "react-router-dom";
+import { VscOutput, VscCombine, VscRepo } from "react-icons/vsc"
+import { Link, Outlet } from "react-router-dom";
 
 const DefaultLayout = () => {
 
@@ -40,6 +39,11 @@ const DefaultLayout = () => {
                                 </Link>
                             </li>
                             <li className="nav-item fs-4">
+                                <Link to="/showProcesoPedidos" className="nav-link text-white">
+                                    <VscCombine /> Procesos
+                                </Link>
+                            </li>
+<li className="nav-item fs-4">
                                 <Link to="/showRegistros" className="nav-link text-white">
                                     <VscRepo /> Registro Diario
                                 </Link>
