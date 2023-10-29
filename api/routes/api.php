@@ -13,8 +13,13 @@ use App\Http\Controllers\Api\InvMateriasPrimaController;
 use App\Http\Controllers\Api\TipoProductoController;
 use App\Http\Controllers\Api\ProveedoreController;
 use App\Http\Controllers\Api\CategoriaMateriasPrimaController;
+
+use App\Http\Controllers\Api\DepartamentoController;
+use App\Http\Controllers\Api\RegistroDiarioController;
+
 use App\Http\Controllers\Api\DetallePedidoController;
 use App\Http\Controllers\Api\ProcesoPedidoController;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -154,3 +159,16 @@ Route::controller(InvMateriasPrimaController::class)->group(function () {
     Route::put('/inventariomp/{id}', 'update');
     Route::delete('/inventariomp/{id}', 'destroy');
 });
+Route::controller(DepartamentoController::class)->group(function(){
+    Route::get('/departamentos','index');
+});
+
+Route::controller(RegistroDiarioController::class)->group(function(){
+    Route::get('/registrosD','index');
+    Route::post('/registroD','store');
+    Route::get('/registroD/{id}','show');
+    Route::put('/registroD/{id}','update');
+    Route::delete('/registroD/{id}','destroy');
+    Route::get('/registroDlast','last');
+});
+

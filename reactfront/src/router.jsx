@@ -21,6 +21,9 @@ import ShowProduct from "./components/ShowProduct";
 import Dashboard from "./components/Dashboard";
 import ShowProcesoPedidos from "./components/ShowProcesoPedidos";
 import DetailsProcesoPedido from "./components/DetailsProcesoPedido";
+import CreateRegistroDiario from "./components/CreateRegistroDiario";
+import EditRegistroDiario from "./components/EditRegistroDiario";
+import ShowRegistroDiario from "./components/ShowRegistrosDiarios";
 
 const router = createBrowserRouter([
     {
@@ -106,6 +109,15 @@ const router = createBrowserRouter([
             {
                 path: '/DetailsProcesoPedido/:id',
                 element: <DetailsProcesoPedido />
+            },{
+                path: '/createRegistro',
+                element: <CreateRegistroDiario />
+            },{
+                path: '/editRegistro/:id',
+                element: <EditRegistroDiario />
+            },{
+                path: '/showRegistros',
+                element: <ShowRegistroDiario />
             }
         ]
     },

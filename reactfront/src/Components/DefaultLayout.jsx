@@ -43,6 +43,11 @@ const DefaultLayout = () => {
                                     <VscCombine /> Procesos
                                 </Link>
                             </li>
+<li className="nav-item fs-4">
+                                <Link to="/showRegistros" className="nav-link text-white">
+                                    <VscRepo /> Registro Diario
+                                </Link>
+                            </li>
                         </ul>
                     </div>
                     <div className="col col mt-5">
