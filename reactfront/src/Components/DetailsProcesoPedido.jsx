@@ -86,7 +86,7 @@ const DetailsProcesoPedido = () => {
         }
     };
 
-    const avanzarLineaProduccion = async (idLinea) => {
+    const avanzarLineaProduccion = (idLinea) => {
         try {
             let nuevaLineaProduccion;
             if (idLinea !== 0) {
@@ -142,6 +142,14 @@ const DetailsProcesoPedido = () => {
             // Manejar el error, si es necesario.
         }
     };
+
+  /*   useEffect(() => {
+        // Acciones dependientes del estado aquí
+        console.log(tempData);
+        console.log(tempo);
+        updateLinea();
+        updateState();
+    }, [tempData, tempo]); */
 
     const updateLinea = async () => {
         try {
