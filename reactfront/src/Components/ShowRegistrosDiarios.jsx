@@ -6,7 +6,7 @@ import { VscAdd } from "react-icons/vsc";
 
 import { Link } from 'react-router-dom'
 
-const endpoint = 'http://127.0.0.1:8000/api'
+const endpoint = 'http://127.0.0.1:8000/api';
 
 const ShowRegistros = () => {
   const [registros, setRegistros] = useState([])

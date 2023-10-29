@@ -144,7 +144,7 @@ const CreateRegistrosDiarios = () => {
                                 <button
                                     type='button'
                                     className='btn btn-outline-secondary mx-2'
-                                    onClick={() => navigate('/')}
+                                    onClick={() => navigate('/showRegistros')}
                                 >
                                     Cancelar
                                 </button>
